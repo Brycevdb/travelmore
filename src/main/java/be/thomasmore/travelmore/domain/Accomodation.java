@@ -1,13 +1,29 @@
 package be.thomasmore.travelmore.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "accomodation")
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = Accomodation.FIND_ALL,
+                        query = "SELECT a FROM Accomodation a"
+                ),
+                @NamedQuery(
+                        name = Accomodation.FIND_BYPLAATS,
+                        query = "SELECT a FROM Accomodation a WHERE a.plaatsId = :plaatsId"
+                ),
+                @NamedQuery(
+                        name = Accomodation.FIND_BYFREEPLACES,
+                        query = "SELECT a FROM Accomodation a WHERE a.freePlaces > :freePlaces"
+                )
+        }
+)
 public class Accomodation {
+    public static final String FIND_ALL = "location.findAll";
+    public static final String FIND_BYPLAATS = "location.findByPlaats";
+    public static final String FIND_BYFREEPLACES = "location.findByFreePlaces";
 
     @Id
     private int id;
