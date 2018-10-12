@@ -1,4 +1,9 @@
 .hoofding img {   margin:auto;
-            display:block;}
+
+max-width:100%;}
 
 body {font-family: 'Ubuntu', sans-serif;}
+
+.navbar-dark {background-color:#01222b;}
+
+h1 {text-align:center;}
