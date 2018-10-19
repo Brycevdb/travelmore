@@ -22,7 +22,7 @@ public class AccomodationService {
         return accomodationRepository.findByFreePlaces(freePlaces);
     }
 
-    public List<Accomodation> findAll() {
+    public List<Accomodation> findAllAccomodations() {
         return accomodationRepository.findAll();
     }
 }
