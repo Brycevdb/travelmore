@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class TripOfUser {
     public static final String FIND_ALL = "tripOfUser.findAll";
 
-    @Column (name = "id")
+    @Id
     private int id;
     @Column (name = "userId")
     private int userId;
