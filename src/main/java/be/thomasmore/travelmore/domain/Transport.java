@@ -9,7 +9,6 @@ public class Transport {
     public static final String FIND_ALL = "transport.findAll";
 
     @Id
-    @Column (name = "id")
     private int id;
     @Column (name = "name")
     private String name;
