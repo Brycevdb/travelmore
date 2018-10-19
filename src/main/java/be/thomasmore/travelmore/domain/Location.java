@@ -58,8 +58,4 @@ public class Location {
     public void setCoords(String coords) {
         this.coords = coords;
     }
-
-    public List<Location> getAll(){
-
-    }
 }
