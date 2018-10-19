@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Period {
     public static final String FIND_ALL = "period.findAll";
+    @Id
     @Column (name = "id")
     private int id;
     @Column (name = "start")

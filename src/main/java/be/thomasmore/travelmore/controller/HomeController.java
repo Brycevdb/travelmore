@@ -25,7 +25,7 @@ public class HomeController implements Serializable {
         if(name == null || name == ""){
             this.locations = this.locationRepo.findAll();
         }else {
-            this.locations = this.locationRepo.findByName(name);
+            this.locations = this.locationRepo.getAllByName(name);
         }
 
         return this.locations;

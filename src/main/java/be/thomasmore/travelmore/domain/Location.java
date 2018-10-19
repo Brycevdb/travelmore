@@ -10,10 +10,6 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(
-                        name = Location.FIND_BY_NAME,
-                        query = "SELECT l FROM Location l WHERE l.name = :name"
-                ),
-                @NamedQuery(
                         name = Location.FIND_ALL,
                         query = "SELECT l FROM Location l"
                 ),
@@ -25,7 +21,6 @@ import java.util.List;
 )
 public class Location {
     public static final String FIND_ALL = "Location.findAll";
-    public static final String FIND_BY_CODE = "Location.findByCode";
     public static final String FIND_BY_NAME = "Location.findByName";
 
     @Id
