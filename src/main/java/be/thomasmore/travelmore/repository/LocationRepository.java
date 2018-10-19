@@ -4,6 +4,7 @@ import be.thomasmore.travelmore.domain.Location;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LocationRepository {
@@ -15,7 +16,13 @@ public class LocationRepository {
     }
 
     public List<Location> findAll() {
-        return entityManager.createNamedQuery(Location.FIND_ALL, Location.class).getResultList();
+        List<Location> locations = entityManager.createNamedQuery(Location.FIND_ALL, Location.class).getResultList();
+
+        if(locations == null){
+            return new ArrayList<>();
+        }
+
+        return locations;
     }
 
     public List<Location> getAllByName(String name){
