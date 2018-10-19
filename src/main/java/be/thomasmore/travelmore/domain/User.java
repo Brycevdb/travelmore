@@ -4,9 +4,19 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
-
+@NamedQueries({
+        @NamedQuery(
+                name = User.FIND_ALL,
+                query = "SELECT l FROM User l"
+        ),
+        @NamedQuery(
+                name = User.FIND_BY_ID,
+                query = "SELECT l FROM User l WHERE l.id = :id"
+        )
+})
 public class User {
-    public static final String FIND_ALL = "user.findAll";
+    public static final String FIND_ALL = "User.findAll";
+    public static final String FIND_BY_ID = "User.findById";
 
     @Id
     private int id;
@@ -16,8 +26,8 @@ public class User {
     private String famname;
     @Column (name = "role")
     private String role;
-    //@Column (name = "pass")
-    //iets om wachtwoord te zetten
+    @Column (name = "pass")
+    private String password;
     @Column (name = "mail")
     private String mail;
     @Column (name = "landId")
@@ -70,4 +80,8 @@ public class User {
     public void setLandId(int landId) {
         this.landId = landId;
     }
+
+    public String getPassword() { return this.password; }
+
+    public void setPassword(String password) { this.password = password; }
 }
