@@ -20,10 +20,6 @@ public class LocationService {
         return locationRepository.findAll();
     }
 
-    public Location findLocationByCode(String name) {
-        return locationRepository.findByName(name);
-    }
-
     public void updateName(int id, String newName) {
         Location location = locationRepository.findById(id);
         location.setName(newName);
