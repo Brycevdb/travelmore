@@ -11,18 +11,18 @@ import javax.persistence.*;
                         query = "SELECT a FROM Accomodation a"
                 ),
                 @NamedQuery(
-                        name = Accomodation.FIND_BYPLAATS,
+                        name = Accomodation.FIND_BYLOCATION,
                         query = "SELECT a FROM Accomodation a WHERE a.plaatsId = :plaatsId"
                 ),
                 @NamedQuery(
                         name = Accomodation.FIND_BYFREEPLACES,
-                        query = "SELECT a FROM Accomodation a WHERE a.freePlaces > :freePlaces"
+                        query = "SELECT a FROM Accomodation a WHERE a.freePlaces >= :freePlaces"
                 )
         }
 )
 public class Accomodation {
     public static final String FIND_ALL = "location.findAll";
-    public static final String FIND_BYPLAATS = "location.findByPlaats";
+    public static final String FIND_BYLOCATION = "location.findByLocation";
     public static final String FIND_BYFREEPLACES = "location.findByFreePlaces";
 
     @Id
