@@ -31,4 +31,10 @@ public class LocationController {
     public void submit(){
         this.locationService.insert(newLocation);
     }
+
+    public String index(Location location){
+        this.newLocation = location;
+
+        return "index_location";
+    }
 }

@@ -3,6 +3,7 @@ package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "location")
@@ -15,11 +16,16 @@ import javax.validation.constraints.Size;
                 @NamedQuery(
                         name = Location.FIND_ALL,
                         query = "SELECT l FROM Location l"
+                ),
+                @NamedQuery(
+                        name = Location.FIND_BY_NAME,
+                        query = "SELECT l FROM Location l WHERE l.name = :name"
                 )
         }
 )
 public class Location {
     public static final String FIND_ALL = "Location.findAll";
+    public static final String FIND_BY_CODE = "Location.findByCode";
     public static final String FIND_BY_NAME = "Location.findByName";
 
     @Id

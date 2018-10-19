@@ -22,6 +22,10 @@ public class LocationRepository {
         return entityManager.createNamedQuery(Location.FIND_BY_NAME, Location.class).setParameter("name", name).getSingleResult();
     }
 
+    public List<Location> findByName(String name){
+        return entityManager.createNamedQuery(Location.FIND_ALL, Location.class).getResultList();
+    }
+
     public void insert(Location location) {
         entityManager.persist(location);
     }
