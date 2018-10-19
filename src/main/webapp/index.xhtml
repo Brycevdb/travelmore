@@ -12,7 +12,7 @@
     <div class="hoofding">
     <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
     </div>
-    <p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
+    <p:dataTable styleClass="test" var="location" value="#{locationController.locations}" id="locationDataTable">
         <p:column headerText="Id">
             <h:outputText value="#{location.id}" />
         </p:column>
