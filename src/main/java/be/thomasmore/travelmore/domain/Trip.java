@@ -9,7 +9,7 @@ public class Trip {
     public static final String FIND_ALL = "trip.findAll";
 
     @Id
-    private int trip;
+    private int id;
     @Column (name = "departure")
     private int departure;
     @Column (name = "accomodationId")
@@ -17,12 +17,12 @@ public class Trip {
     @Column (name = "transportId")
     private int transportId;
 
-    public int getTrip() {
-        return trip;
+    public int getId() {
+        return id;
     }
 
-    public void setTrip(int trip) {
-        this.trip = trip;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getDeparture() {

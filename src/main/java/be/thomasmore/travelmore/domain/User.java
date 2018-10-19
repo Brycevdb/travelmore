@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class User {
     public static final String FIND_ALL = "user.findAll";
 
-    @Column (name = "id")
+    @Id
     private int id;
     @Column (name = "name")
     private String name;
