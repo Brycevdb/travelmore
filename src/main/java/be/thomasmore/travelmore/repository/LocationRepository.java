@@ -18,8 +18,8 @@ public class LocationRepository {
         return entityManager.createNamedQuery(Location.FIND_ALL, Location.class).getResultList();
     }
 
-    public Location findByCode(String code) {
-        return entityManager.createNamedQuery(Location.FIND_BY_CODE, Location.class).setParameter("code", code).getSingleResult();
+    public Location findByName(String name) {
+        return entityManager.createNamedQuery(Location.FIND_BY_NAME, Location.class).setParameter("name", name).getSingleResult();
     }
 
     public void insert(Location location) {

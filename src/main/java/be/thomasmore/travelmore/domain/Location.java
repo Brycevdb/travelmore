@@ -9,8 +9,8 @@ import javax.validation.constraints.Size;
 @NamedQueries(
         {
                 @NamedQuery(
-                        name = Location.FIND_BY_CODE,
-                        query = "SELECT l FROM Location l WHERE l.code = :code"
+                        name = Location.FIND_BY_NAME,
+                        query = "SELECT l FROM Location l WHERE l.name = :name"
                 ),
                 @NamedQuery(
                         name = Location.FIND_ALL,
@@ -20,15 +20,14 @@ import javax.validation.constraints.Size;
 )
 public class Location {
     public static final String FIND_ALL = "Location.findAll";
-    public static final String FIND_BY_CODE = "Location.findByCode";
+    public static final String FIND_BY_NAME = "Location.findByName";
 
     @Id
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name = "code")
-    @Size(min=3, max = 5)
-    private String code;
+    @Column(name = "coords")
+    private String coords;
 
     public int getId() {
         return id;
@@ -46,11 +45,11 @@ public class Location {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    public String getCoords() {
+        return coords;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCoords(String coords) {
+        this.coords = coords;
     }
 }
