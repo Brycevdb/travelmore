@@ -4,8 +4,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="User login"/>
-</f:view>
+      xmlns:p="http://primefaces.org/ui">
+<h:head><title>Travel More!</title>
+    <link rel="stylesheet" href="style.css"/>
+</h:head>
+<h:body>
+    <div class="hoofding">
+        <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
+    </div>
+
+    <h:form id="getUser">
+        <p:panel id="panel" header="Login">
+            <h:panelGrid columns="4" cellpadding="5">
+                <h:outputLabel for="userMail" value="Mail:" />
+                <p:inputText id="userMail" value="#{userController.mail}"></p:inputText>
+                <h:outputLabel for="userPass" value="Password:" />
+
+                <p:inputText id="userPass" value="#{userController.pass}"></p:inputText>
+                <h:commandButton value="Cancel" action="#{homeController.index}" />
+                <h:commandButton value="Continue" action="#{userController.login}" />
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+</h:body>
 </html>

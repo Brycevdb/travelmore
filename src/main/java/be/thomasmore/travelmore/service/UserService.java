@@ -19,6 +19,10 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
+    public User findByMailandPassword(String mail, String pass){
+        return this.userRepository.findByMailAndPassword(mail, pass);
+    }
+
     public void updateName(int id, String newName) {
         User location = this.userRepository.findById(id);
         location.setName(newName);
@@ -26,7 +30,7 @@ public class UserService {
 
     public void updatePassword(int id, String password){
         User location = this.userRepository.findById(id);
-        location.setPassword(password);
+        location.setPass(password);
     }
 
     public void insert(User user) {

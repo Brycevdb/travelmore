@@ -12,11 +12,16 @@ import javax.persistence.*;
         @NamedQuery(
                 name = User.FIND_BY_ID,
                 query = "SELECT l FROM User l WHERE l.id = :id"
+        ),
+        @NamedQuery(
+                name = User.FIND_BY_MAIL_AND_PASS,
+                query = "SELECT l FROM User l WHERE l.mail = :mail AND l.pass = :pass"
         )
 })
 public class User {
     public static final String FIND_ALL = "User.findAll";
     public static final String FIND_BY_ID = "User.findById";
+    public static final String FIND_BY_MAIL_AND_PASS = "User.findByMailAndPass";
 
     @Id
     private int id;
@@ -27,7 +32,7 @@ public class User {
     @Column (name = "role")
     private String role;
     @Column (name = "pass")
-    private String password;
+    private String pass;
     @Column (name = "mail")
     private String mail;
     @Column (name = "landId")
@@ -81,7 +86,7 @@ public class User {
         this.landId = landId;
     }
 
-    public String getPassword() { return this.password; }
+    public String getPass() { return this.pass; }
 
-    public void setPassword(String password) { this.password = password; }
+    public void setPass(String password) { this.pass = password; }
 }

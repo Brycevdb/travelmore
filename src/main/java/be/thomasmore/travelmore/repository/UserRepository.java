@@ -25,6 +25,10 @@ public class UserRepository {
         return users;
     }
 
+    public User findByMailAndPassword(String mail, String pass){
+        return entityManager.createNamedQuery(User.FIND_BY_MAIL_AND_PASS, User.class).setParameter("mail", mail).setParameter("pass", pass).getSingleResult();
+    }
+
     public void insert(User user) {
         entityManager.persist(user);
     }
