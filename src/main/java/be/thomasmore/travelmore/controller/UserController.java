@@ -53,18 +53,39 @@ public class UserController implements Serializable {
     }
 
     public String register(String mail, String pass, String name, String famname){
+//        Logout old user
+        this.logout();
+
 //        Generate user
         User u = new User(name, famname, pass, mail);
 
-//        Check if
+//        Check if mail already in use
+        boolean inuse = false;
+
+        try {
+            this.userService.findByMail(mail);
+            inuse = true;
+        }catch (Exception e) {}
 
 //        Insert user
-        try {
-            this.userService.insert(u);
-            toolmessage = "";
-        }catch (Exception e){
-            toolmessage = "Something went wrong registering " + e.getStackTrace().toString();
+        if(!inuse) {
+            try {
+                this.userService.insert(u);
+                toolmessage = "";
+            } catch (Exception e) {
+                toolmessage = "Something went wrong registering " + e.getStackTrace().toString();
+            }
+        }else {
+            toolmessage = "Mail already in use";
         }
+
+//        Repeat sequence
+        return index();
+    }
+
+    public String logout(){
+//        Clear user
+        currentUser = new User();
 
 //        Repeat sequence
         return index();
