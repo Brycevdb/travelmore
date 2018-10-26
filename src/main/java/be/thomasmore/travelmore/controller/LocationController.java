@@ -20,6 +20,10 @@ public class LocationController {
         return newLocation;
     }
 
+    public List<Location> getByName(String search){
+        return this.locationService.findAllLocations();
+    }
+
     public void setNewLocation(Location newLocation) {
         this.newLocation = newLocation;
     }
