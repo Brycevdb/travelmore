@@ -41,7 +41,7 @@ public class UserController implements Serializable {
     public String getToolmessage(){
         return toolmessage;
     }
-
+    // try logging in with DakkeOG@Ifuckedyour.mom & root
     public String login(String mail, String pass){
         try {
             currentUser = this.userService.findByMailandPassword(mail, getHash(pass));
@@ -51,7 +51,7 @@ public class UserController implements Serializable {
         }
 
 //        Repeat sequence
-        return index();
+        return "index";
     }
 
     public String register(String mail, String pass, String name, String famname){
