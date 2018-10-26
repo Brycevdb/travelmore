@@ -38,6 +38,15 @@ public class User {
     @Column (name = "landId")
     private int landId;
 
+    public User(){ }
+
+    public User(String name, String famname, String pass, String mail){
+        this.name = name;
+        this.famname = famname;
+        this.pass = pass;
+        this.mail = mail;
+    }
+
     public int getId() {
         return id;
     }
@@ -89,4 +98,8 @@ public class User {
     public String getPass() { return this.pass; }
 
     public void setPass(String password) { this.pass = password; }
+
+    public String getFullname(){
+        return this.name + " " + this.famname;
+    }
 }

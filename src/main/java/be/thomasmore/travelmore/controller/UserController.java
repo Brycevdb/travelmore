@@ -3,29 +3,25 @@ package be.thomasmore.travelmore.controller;
 import be.thomasmore.travelmore.domain.User;
 import be.thomasmore.travelmore.service.UserService;
 
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
 @Named(value = "userController")
-@ManagedBean
-@ViewScoped
+@SessionScoped
 public class UserController implements Serializable {
 
     @Inject
     private UserService userService;
 
-    private User currentUser;
+    private static User currentUser;
+    private static String toolmessage;
 
-    public UserController(){
-        this.currentUser = new User();
-    }
+    public UserController(){ }
 
     public String index(){
-        if(this.currentUser.getId() == 0) {
+        if(currentUser == null) {
             return "index_user";
         }
 
@@ -33,11 +29,36 @@ public class UserController implements Serializable {
     }
 
     public User getCurrentUser(){
-        return this.currentUser;
+        return currentUser;
+    }
+
+    public String getToolmessage(){
+        return toolmessage;
     }
 
     public String login(String mail, String pass){
-        this.currentUser = this.userService.findByMailandPassword(mail, pass);
+        try {
+            currentUser = this.userService.findByMailandPassword(mail, pass);
+            toolmessage = "";
+        }catch (Exception e){
+            toolmessage = "Something went wrong when logging in";
+        }
+
+//        Repeat sequence
+        return index();
+    }
+
+    public String register(String mail, String pass, String name, String famname){
+//        Generate user
+        User u = new User(name, famname, pass, mail);
+
+//        Insert user
+        try {
+            this.userService.insert(u);
+            toolmessage = "";
+        }catch (Exception e){
+            toolmessage = "Something went wrong when logging in";
+        }
 
 //        Repeat sequence
         return index();
