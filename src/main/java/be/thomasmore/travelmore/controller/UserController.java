@@ -7,6 +7,8 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Named(value = "userController")
 @SessionScoped
@@ -42,7 +44,7 @@ public class UserController implements Serializable {
     // try logging in with DakkeOG@Ifuckedyour.mom & root
     public String login(String mail, String pass){
         try {
-            currentUser = this.userService.findByMailandPassword(mail, pass);
+            currentUser = this.userService.findByMailandPassword(mail, getHash(pass));
             toolmessage = "";
         }catch (Exception e){
             toolmessage = "Something went wrong when logging in";
@@ -57,7 +59,7 @@ public class UserController implements Serializable {
         this.logout();
 
 //        Generate user
-        User u = new User(name, famname, pass, mail);
+        User u = new User(name, famname, getHash(pass), mail);
 
 //        Check if mail already in use
         boolean inuse = false;
@@ -71,7 +73,7 @@ public class UserController implements Serializable {
         if(!inuse) {
             try {
                 this.userService.insert(u);
-                toolmessage = "";
+                toolmessage = "Registered succesfull with: " + mail;
             } catch (Exception e) {
                 toolmessage = "Something went wrong registering " + e.getStackTrace().toString();
             }
@@ -89,5 +91,29 @@ public class UserController implements Serializable {
 
 //        Repeat sequence
         return index();
+    }
+
+    private String getHash(String source){
+        try {
+//            Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+//            Hash
+            md.update(source.getBytes());
+            byte[] bytes = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            return sb.toString();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 }
