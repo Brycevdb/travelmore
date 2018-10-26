@@ -4,9 +4,21 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "transport")
-
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = Transport.FIND_ALL,
+                        query = "SELECT t FROM Transport t"
+                ),
+                @NamedQuery(
+                        name = Transport.FIND_BY_NAME,
+                        query = "SELECT t FROM Transport t WHERE t.name = :name"
+                )
+        }
+)
 public class Transport {
     public static final String FIND_ALL = "transport.findAll";
+    public static final String FIND_BY_NAME = "transport.findByName";
 
     @Id
     private int id;
