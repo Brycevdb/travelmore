@@ -18,10 +18,16 @@ public class LocationRestService{
     private LocationService locationService;
 
     @GET
-    @Path("/getlocation")
+    @Path("/{id}")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Location getLocationById(@QueryParam("id") int id) {
+    public Location getLocationById(@PathParam("id") int id) {
         return locationService.findLocationById(id);
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public void deleteById(@PathParam("id")int id){
+        locationService.removeById(id);
     }
 
     @POST
@@ -38,4 +44,5 @@ public class LocationRestService{
         locationService.insert(location);
         return Response.status(Response.Status.CREATED).entity(location).build();
     }
+
 }
