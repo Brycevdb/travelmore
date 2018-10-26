@@ -5,7 +5,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "period")
-
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = Period.FIND_ALL,
+                        query = "SELECT p FROM Period p"
+                )
+        }
+)
 public class Period {
     public static final String FIND_ALL = "period.findAll";
     @Id

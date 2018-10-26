@@ -25,14 +25,14 @@ public class TripController {
     }
 
     public Trip findTripById(int id) {
-        return tripService.findTripById(id);
+        return this.tripService.findTripById(id);
     }
 
     public List<Trip> getTrips() {
-        return tripService.findAllTrips();
+        return this.tripService.findAllTrips();
     }
 
     public void submit() {
-        tripService.insert(newTrip);
+        this.tripService.insert(newTrip);
     }
 }
