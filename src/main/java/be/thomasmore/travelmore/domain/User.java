@@ -16,12 +16,17 @@ import javax.persistence.*;
         @NamedQuery(
                 name = User.FIND_BY_MAIL_AND_PASS,
                 query = "SELECT l FROM User l WHERE l.mail = :mail AND l.pass = :pass"
+        ),
+        @NamedQuery(
+                name = User.FIND_BY_MAIL,
+                query = "SELECT l FROM User l WHERE l.mail = :mail"
         )
 })
 public class User {
     public static final String FIND_ALL = "User.findAll";
     public static final String FIND_BY_ID = "User.findById";
     public static final String FIND_BY_MAIL_AND_PASS = "User.findByMailAndPass";
+    public static final String FIND_BY_MAIL = "User.findByMail";
 
     @Id
     private int id;

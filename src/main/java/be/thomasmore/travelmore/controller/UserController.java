@@ -18,7 +18,11 @@ public class UserController implements Serializable {
     private static User currentUser;
     private static String toolmessage;
 
-    public UserController(){ }
+    public UserController(){
+        if(currentUser == null){
+            currentUser = new User();
+        }
+    }
 
     public String index(){
         if(currentUser == null) {
@@ -51,6 +55,8 @@ public class UserController implements Serializable {
     public String register(String mail, String pass, String name, String famname){
 //        Generate user
         User u = new User(name, famname, pass, mail);
+
+//        Check if
 
 //        Insert user
         try {

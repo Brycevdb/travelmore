@@ -26,9 +26,7 @@ public class UserService {
     }
 
     public User findByMail(String mail){
-//        return this.userRepository.findByMailAndPassword(mail);
-
-        return null;
+        return this.userRepository.findByMail(mail);
     }
 
     public void updateName(int id, String newName) {
