@@ -14,6 +14,10 @@ public class LocationRepository {
     public Location findById(int id) {
         return entityManager.find(Location.class, id);
     }
+    public void deleteById(int id) {
+        Location location = entityManager.find(Location.class, id);
+        entityManager.remove(location);
+    }
 
     public List<Location> findAll() {
         List<Location> locations = entityManager.createNamedQuery(Location.FIND_ALL, Location.class).getResultList();

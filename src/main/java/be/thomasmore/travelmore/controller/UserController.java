@@ -57,7 +57,7 @@ public class UserController implements Serializable {
             this.userService.insert(u);
             toolmessage = "";
         }catch (Exception e){
-            toolmessage = "Something went wrong when logging in";
+            toolmessage = "Something went wrong registering " + e.getStackTrace().toString();
         }
 
 //        Repeat sequence

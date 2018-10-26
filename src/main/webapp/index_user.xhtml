@@ -13,24 +13,46 @@
         <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
     </div>
 
+    <p>
+        #{userController.toolmessage}
+    </p>
+
     <h:form>
         <div  class="centerDiv" style="width: 400px">
             <p:panel>
                 <f:facet name="header">Login</f:facet>
                 <h:panelGrid columns="2">
                     Email:
-                    <h:inputText id="Mail" binding="#{mail}" required="true" label="Mail" />
+                    <h:inputText id="lMail" binding="#{lmail}" required="true" label="Mail" />
                     Wachtwoord:
-                    <h:inputSecret id="Pass" binding="#{pass}" required="true" label="Password" />
+                    <h:inputSecret id="lPass" binding="#{lpass}" required="true" label="Password" />
 
                 </h:panelGrid>
-                <p:commandButton value="Login" action="#{userController.login(mail.value, pass.value)}" ajax="false"/>
+                <p:commandButton value="Login" action="#{userController.login(lmail.value, lpass.value)}" ajax="false"/>
             </p:panel>
         </div>
-
-        <p>
-            #{userController.toolmessage}
-        </p>
     </h:form>
+
+    <h:form>
+    <div  class="centerDiv" style="width: 400px">
+        <p:panel>
+            <f:facet name="header">Register</f:facet>
+            <h:panelGrid columns="2">
+                Name:
+                <h:inputText id="rName" binding="#{rname}" required="true" label="Name" />
+
+                Family name:
+                <h:inputText id="rFamname" binding="#{rfamname}" required="true" label="Family name" />
+
+                Mail:
+                <h:inputText id="rMail" binding="#{rmail}" required="true" label="Mail" />
+
+                Password:
+                <h:inputSecret id="rPass" binding="#{rpass}" required="true" label="Password" />
+            </h:panelGrid>
+            <p:commandButton value="Register" action="#{userController.register(rmail.value, rpass.value, rname.value, rfamname.value)}" ajax="false"/>
+        </p:panel>
+    </div>
+</h:form>
 </h:body>
 </html>

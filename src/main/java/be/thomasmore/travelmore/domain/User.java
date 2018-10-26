@@ -45,6 +45,7 @@ public class User {
         this.famname = famname;
         this.pass = pass;
         this.mail = mail;
+        this.role = "User";
     }
 
     public int getId() {
