@@ -1,0 +1,38 @@
+package be.thomasmore.travelmore.controller;
+
+import be.thomasmore.travelmore.domain.Trip;
+import be.thomasmore.travelmore.service.TripService;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
+import java.util.List;
+
+@ManagedBean
+@ViewScoped
+public class TripController {
+    private Trip newTrip = new Trip();
+
+    @Inject
+    private TripService tripService;
+
+    public Trip getNewTrip() {
+        return newTrip;
+    }
+
+    public void setNewTrip(Trip newTrip) {
+        this.newTrip = newTrip;
+    }
+
+    public Trip findTripById(int id) {
+        return tripService.findTripById(id);
+    }
+
+    public List<Trip> getTrips() {
+        return tripService.findAllTrips();
+    }
+
+    public void submit() {
+        tripService.insert(newTrip);
+    }
+}

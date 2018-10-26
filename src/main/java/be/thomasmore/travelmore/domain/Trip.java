@@ -4,7 +4,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "trip")
-
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = Trip.FIND_ALL,
+                        query = "SELECT t FROM Trip t"
+                )
+        }
+)
 public class Trip {
     public static final String FIND_ALL = "trip.findAll";
 
