@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head><title>Travel More!</title>
     <link rel="stylesheet" href="style.css"/>
 </h:head>
@@ -13,18 +13,24 @@
         <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
     </div>
 
-    <h:form id="getUser">
-        <p:panel id="panel" header="Login">
-            <h:panelGrid columns="4" cellpadding="5">
-                <h:outputLabel for="userMail" value="Mail:" />
-                <p:inputText id="userMail" value="#{userController.mail}"></p:inputText>
-                <h:outputLabel for="userPass" value="Password:" />
+    <h:form>
+        <div  class="centerDiv" style="width: 400px">
+            <p:panel>
+                <f:facet name="header">Login</f:facet>
+                <h:panelGrid columns="2">
+                    Email:
+                    <h:inputText id="Mail" binding="#{mail}" required="true" label="Mail" />
+                    Wachtwoord:
+                    <h:inputSecret id="Pass" binding="#{pass}" required="true" label="Password" />
 
-                <p:inputText id="userPass" value="#{userController.pass}"></p:inputText>
-                <h:commandButton value="Cancel" action="#{homeController.index}" />
-                <h:commandButton value="Continue" action="#{userController.login}" />
-            </h:panelGrid>
-        </p:panel>
+                </h:panelGrid>
+                <p:commandButton value="Login" action="#{userController.login(mail.value, pass.value)}" ajax="false"/>
+            </p:panel>
+        </div>
+
+        <p>
+            #{userController.toolmessage}
+        </p>
     </h:form>
 </h:body>
 </html>
