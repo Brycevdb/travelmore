@@ -25,7 +25,7 @@ public class UserController implements Serializable {
     }
 
     public String index(){
-        if(currentUser == null) {
+        if(currentUser.getId() == 0) {
             return "index_user";
         }
 
