@@ -1,0 +1,2 @@
+Ingeven in postman:
+http://localhost:8181/travelmore/rest/locations/getlocation?id=1
