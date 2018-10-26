@@ -6,12 +6,32 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <h:head><title>Travel More!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css"/>
 </h:head>
 <h:body>
     <div class="hoofding">
-    <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
+        <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
     </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <h:form>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><h:commandButton styleClass="test" value="User login" action="#{userController.index}" /></li>
+            </ul>
+            </h:form>
+        </div>
+
+    </nav>
     <p:dataTable styleClass="test" var="location" value="#{locationController.locations}" id="locationDataTable">
         <p:column headerText="Id">
             <h:outputText value="#{location.id}" />
@@ -37,7 +57,7 @@
             </h:panelGrid>
         </p:panel>
 
-        <h:commandButton value="User login" action="#{userController.index}" />
+
     </h:form>
 </h:body>
 </html>
