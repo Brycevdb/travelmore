@@ -16,6 +16,10 @@ public class LocationService {
         return locationRepository.findById(id);
     }
 
+    public void removeById(int id) {
+        locationRepository.deleteById(id);
+    }
+
     public List<Location> findAllLocations() {
         return locationRepository.findAll();
     }
