@@ -4,9 +4,11 @@ import be.thomasmore.travelmore.domain.User;
 import be.thomasmore.travelmore.repository.LocationRepository;
 import be.thomasmore.travelmore.repository.UserRepository;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
 
+@Stateless
 public class UserService {
     @Inject
     private UserRepository userRepository;
@@ -21,6 +23,12 @@ public class UserService {
 
     public User findByMailandPassword(String mail, String pass){
         return this.userRepository.findByMailAndPassword(mail, pass);
+    }
+
+    public User findByMail(String mail){
+//        return this.userRepository.findByMailAndPassword(mail);
+
+        return null;
     }
 
     public void updateName(int id, String newName) {
