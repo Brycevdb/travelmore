@@ -3,23 +3,18 @@ package be.thomasmore.travelmore.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tripOfUser")
+@Table(name = "tripofuser")
 @NamedQueries(
         {
                 @NamedQuery(
-                        name = TripOfUser.FIND_ALL,
-                        query = "SELECT t FROM TripOfUser t"
-                ),
-                @NamedQuery(
-                        name = TripOfUser.FIND_BY_USERID,
-                        query = "SELECT t FROM TripOfUser t WHERE t.userId = :userId"
+                        name = TripOfUser.FIND_BYUSERID,
+                        query = "SELECT t FROM TripOfUser t WHERE t.userId >= :userId"
                 )
         }
 )
-
 public class TripOfUser {
     public static final String FIND_ALL = "tripOfUser.findAll";
-    public static final String FIND_BY_USERID = "tripOfUser.findByUserId";
+    public static final String FIND_BYUSERID = "tripOfUser.findByUserId";
 
     @Id
     private int id;

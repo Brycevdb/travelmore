@@ -10,9 +10,9 @@ public class TripOfUserService {
     @Inject
     private TripOfUserRepository tripofuserRepository;
 
-    public TripOfUser findById(int userId) {
 
-        return tripofuserRepository.findById(userId);
+    public List<TripOfUser> findByUserId(int userId) {
+        return tripofuserRepository.findByUserId(userId);
     }
 
 
