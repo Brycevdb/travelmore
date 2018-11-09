@@ -19,3 +19,6 @@ input[type=submit].test {
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;}
+
+.container .paneel {  width:400px;
+                        display:block;}

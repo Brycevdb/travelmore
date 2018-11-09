@@ -36,7 +36,28 @@
 
     </nav>
         <div class="container">
-        <p>Wassup my main man, #{userController.currentUser.fullname}</p>
+        <p>Hallo #{userController.currentUser.fullname}, dit zijn uw reizen</p>
+
+            <p:dataTable styleClass="test" var="mijnReis" value="#{tripOfUserController.getTripByUserId(userController.currentUser.id)}" id="reizenDataTable">
+                <p:column headerText="id">
+                    <h:outputText value="#{mijnReis.id}" />
+                </p:column>
+
+                <p:column headerText="tripid">
+                    <h:outputText value="#{mijnReis.tripId}" />
+                </p:column>
+
+                <p:column headerText="payment">
+                    <h:outputText value="#{mijnReis.paymentId}" />
+                </p:column>
+
+                <p:column headerText="Aantal personen">
+                    <h:outputText value="#{mijnReis.totalpeeps}" />
+                </p:column>
+
+
+            </p:dataTable>
+
         </div>
 </h:body>
 </html>

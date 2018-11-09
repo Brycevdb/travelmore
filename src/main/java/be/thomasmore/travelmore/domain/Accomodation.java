@@ -12,7 +12,7 @@ import javax.persistence.*;
                 ),
                 @NamedQuery(
                         name = Accomodation.FIND_BYLOCATION,
-                        query = "SELECT a FROM Accomodation a WHERE a.plaatsId = :plaatsId"
+                        query = "SELECT a FROM Accomodation a WHERE a.location = :location"
                 ),
                 @NamedQuery(
                         name = Accomodation.FIND_BYFREEPLACES,
@@ -27,14 +27,18 @@ public class Accomodation {
 
     @Id
     private int id;
-    @Column(name = "plaatsId")
-    private int plaatsId;
+    @Column(name = "name")
+    private String name;
     @Column(name = "periodId")
     private int periodId;
     @Column(name = "freePlaces")
     private int freePlaces;
     @Column(name = "priceAPerson")
     private double priceAPerson;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
 
     public int getId() {
         return id;
@@ -44,12 +48,12 @@ public class Accomodation {
         this.id = id;
     }
 
-    public int getPlaatsId() {
-        return plaatsId;
+    public String getName() {
+        return name;
     }
 
-    public void setPlaatsId(int plaatsId) {
-        this.plaatsId = plaatsId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPeriodId() {

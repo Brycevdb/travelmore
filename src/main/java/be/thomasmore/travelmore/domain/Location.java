@@ -3,6 +3,7 @@ package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,6 +31,9 @@ public class Location {
     @Column(name = "coords")
     private String coords;
 
+    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+    private List<Accomodation> accomodations;
+
     public int getId() {
         return id;
     }
@@ -52,5 +56,13 @@ public class Location {
 
     public void setCoords(String coords) {
         this.coords = coords;
+    }
+
+    public List<Accomodation> getAccomodations() {
+        return accomodations;
+    }
+
+    public void setAccomodations(List<Accomodation> accomodations) {
+        this.accomodations = accomodations;
     }
 }

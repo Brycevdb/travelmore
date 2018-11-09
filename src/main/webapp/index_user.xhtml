@@ -36,8 +36,12 @@
         </div>
 
     </nav>
+    <div class="container">
+
+        <div style="width:400px; float:left; margin:5px;">
+            <p>Already a user? Log in here.</p>
     <h:form>
-        <div  class="centerDiv" style="width: 400px">
+
             <p:panel>
                 <f:facet name="header">Login</f:facet>
                 <h:panelGrid columns="2">
@@ -49,11 +53,13 @@
                 </h:panelGrid>
                 <p:commandButton value="Login" action="#{userController.login(lmail.value, lpass.value)}" ajax="false"/>
             </p:panel>
-        </div>
-    </h:form>
 
+    </h:form>
+        </div>
+        <div style="width:400px; float:right; margin:5px;">
+            <p>A new user to our site? Fill in the form below to register for a user-account.</p>
     <h:form>
-        <div  class="centerDiv" style="width: 400px">
+
             <p:panel>
                 <f:facet name="header">Register</f:facet>
                 <h:panelGrid columns="2">
@@ -71,8 +77,9 @@
                 </h:panelGrid>
                 <p:commandButton value="Register" action="#{userController.register(rmail.value, rpass.value, rname.value, rfamname.value)}" ajax="false"/>
             </p:panel>
-        </div>
     </h:form>
+        </div>
+    </div>
 
 </h:body>
 </html>
