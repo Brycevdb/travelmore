@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `accomodation`;
 CREATE TABLE `accomodation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) default null,
-  `plaatsId` int(11) DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
   `periodId` int(11) DEFAULT NULL,
   `freeplaces` int(11) DEFAULT NULL,
   `priceaperson` double DEFAULT NULL,
@@ -268,3 +268,8 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-10-12 10:53:46
+INSERT INTO `travelmore`.`location` (`name`, `coords`) VALUES ('Brussel', '0.0');
+INSERT INTO `travelmore`.`location` (`name`, `coords`) VALUES ('Antwerpen', '1.1');
+
+INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`) VALUES ('Hotel', '1', '5', '50', '50');
+INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`) VALUES ('Camping Kitsch', '2', '3', '200', '15');
