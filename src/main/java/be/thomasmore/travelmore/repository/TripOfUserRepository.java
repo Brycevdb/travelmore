@@ -11,8 +11,8 @@ public class TripOfUserRepository {
     @PersistenceContext(unitName = "travelMorePU")
     private EntityManager entityManager;
 
-    public List<TripOfUser> findById(int userId){
-        List<TripOfUser> userTrips = entityManager.createNamedQuery(TripOfUser.FIND_BYID, TripOfUser.class).setParameter("userId", userId).getResultList();
+    public List<TripOfUser> findByUserId(int userId){
+        List<TripOfUser> userTrips = entityManager.createNamedQuery(TripOfUser.FIND_BYUSERID, TripOfUser.class).setParameter("userId", userId).getResultList();
 
         if (userTrips == null) {
             return new ArrayList<>();
