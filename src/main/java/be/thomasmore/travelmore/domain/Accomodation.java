@@ -36,13 +36,6 @@ public class Accomodation {
     @Column(name = "priceAPerson")
     private double priceAPerson;
 
-    @ManyToOne
-    @JoinColumn(name = "plaatsId")
-    private Location location;
-
-    @ManyToMany
-    @JoinTable(name = "Accomodation")
-
     public int getId() {
         return id;
     }
