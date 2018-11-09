@@ -53,7 +53,7 @@
 
     <h:form>
         <p:inputText id="Search" binding="#{search}" required="true" label="Search" />
-        <h:commandButton value="Search" action="#{homeController.find(search.value)}" update=":locationDataTable" />
+        <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
     </h:form>
 
 </h:body>

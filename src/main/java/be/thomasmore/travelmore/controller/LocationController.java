@@ -3,6 +3,7 @@ package be.thomasmore.travelmore.controller;
 import be.thomasmore.travelmore.domain.Location;
 import be.thomasmore.travelmore.service.LocationService;
 
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -21,7 +22,7 @@ public class LocationController {
     }
 
     public List<Location> getByName(String search){
-        return this.locationService.findAllLocations();
+        return this.locationService.getAllByName(search);
     }
 
     public void setNewLocation(Location newLocation) {
@@ -31,6 +32,7 @@ public class LocationController {
     public List<Location> getLocations(){
         return this.locationService.findAllLocations();
     }
+
 
     public void submit(){
         this.locationService.insert(newLocation);
