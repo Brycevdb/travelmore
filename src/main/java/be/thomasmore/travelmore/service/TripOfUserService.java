@@ -15,5 +15,9 @@ public class TripOfUserService {
         return tripofuserRepository.findByUserId(userId);
     }
 
+    public void insert(TripOfUser tos) {
+        this.tripofuserRepository.insert(tos);
+    }
+
 
 }
