@@ -11,15 +11,17 @@ public class TripOfUserRepository {
     @PersistenceContext(unitName = "travelMorePU")
     private EntityManager entityManager;
 
-    public List<TripOfUser> findById(int userId){
-        List<TripOfUser> userTrips = entityManager.createNamedQuery(TripOfUser.FIND_BYID, TripOfUser.class).setParameter("userId", userId).getResultList();
-
-        if (userTrips == null) {
-            return new ArrayList<>();
-        }
-
-        return userTrips;
+    public TripOfUser findById(int Id){
+        return entityManager.find(TripOfUser.class, Id);
     }
 
+    public List<TripOfUser> findByUserId(int userId) {
+        List<TripOfUser> tripsOfuser = entityManager.createNamedQuery(TripOfUser.FIND_BY_USERID, TripOfUser.class).getResultList();
+
+        if (tripsOfuser == null) {
+            return new ArrayList<>();
+        }
+        return tripsOfuser;
+    }
 
 }

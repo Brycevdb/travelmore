@@ -4,9 +4,22 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tripOfUser")
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = TripOfUser.FIND_ALL,
+                        query = "SELECT t FROM TripOfUser t"
+                ),
+                @NamedQuery(
+                        name = TripOfUser.FIND_BY_USERID,
+                        query = "SELECT t FROM TripOfUser t WHERE t.userId = :userId"
+                )
+        }
+)
 
 public class TripOfUser {
     public static final String FIND_ALL = "tripOfUser.findAll";
+    public static final String FIND_BY_USERID = "tripOfUser.findByUserId";
 
     @Id
     private int id;
