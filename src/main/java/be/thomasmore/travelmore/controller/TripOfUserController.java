@@ -23,21 +23,17 @@ public class TripOfUserController implements Serializable{
     @Inject
     private TripOfUserService tripOfUserService;
 
-    public List<TripOfUser> getTripByUserId (int userId) {
-        return this.tripOfUserService.findByUserId(userId);
+    public List<TripOfUser> getTripsByUserId (int userId) {
+        if(userId != 0){
+            return this.tripOfUserService.findByUserId(userId);
+        }
+        return null;
     }
 
     public String index(){
 
-        //addReisTest();
         return "mijnReizen";
     }
 
-    public void addReisTest(){
 
-        TripOfUser tos = new TripOfUser();
-        tos.setId(1);tos.setPaymentId(1);tos.setTotalpeeps(1);tos.setTotalprice(15);tos.setTripId(1);tos.setUserId(1);
-
-        this.tripOfUserService.insert(tos);
-    }
 }
