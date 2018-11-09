@@ -38,22 +38,15 @@
     <p>Welkom #{userController.currentUser.fullname}</p>
 
     <p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
-        <p:column headerText="Id">
-            <h:outputText value="#{location.id}" />
-        </p:column>
-
         <p:column headerText="Name">
-            <h:outputText value="#{location.name}" />
-        </p:column>
-
-        <p:column headerText="Code">
-            <h:outputText value="#{location.coords}" />
+            <h:inputHidden id="lLocation" binding="#{llocation}" value="#{location.id}" />
+            <p:commandButton value="#{location.name}" action="#{accomodationController.getForLocation(llocation.value)}" />
         </p:column>
     </p:dataTable>
 
     <h:form>
-        <p:inputText id="Search" binding="#{search}" required="true" label="Search" />
-        <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
+        <p:inputText id="Search" binding="#{search}" required="true" label="Search"></p:inputText>
+        <h:commandButton value="Search" action="#{locationController.guessByName(search.value)}" update=":locationDataTable" />
     </h:form>
 
 </h:body>

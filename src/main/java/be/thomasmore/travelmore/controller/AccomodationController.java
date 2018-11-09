@@ -6,12 +6,14 @@ import be.thomasmore.travelmore.service.AccomodationService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
 @ViewScoped
 public class AccomodationController {
     private Accomodation newAccomodation = new Accomodation();
+    private List<Accomodation> accomodations = new ArrayList<Accomodation>();
 
     @Inject
     private AccomodationService accomodationService;
@@ -40,5 +42,11 @@ public class AccomodationController {
         this.newAccomodation = accomodation;
 
         return "index_accomodation";
+    }
+
+    public String getForLocation(String id){
+        this.accomodations = this.accomodationService.findAccomodationByLocation(Integer.parseInt(id));
+
+        return "accomodations_list";
     }
 }
