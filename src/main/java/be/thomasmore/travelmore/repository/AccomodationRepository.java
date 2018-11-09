@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.repository;
 
 import be.thomasmore.travelmore.domain.Accomodation;
+import be.thomasmore.travelmore.domain.Location;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,8 +26,8 @@ public class AccomodationRepository {
         return accomodations;
     }
 
-    public List<Accomodation> findByLocation(int plaatsId) {
-        List<Accomodation> accomodations = entityManager.createNamedQuery(Accomodation.FIND_BYLOCATION, Accomodation.class).setParameter("plaatsId", plaatsId).getResultList();
+    public List<Accomodation> findByLocation(Location location) {
+        List<Accomodation> accomodations = entityManager.createNamedQuery(Accomodation.FIND_BYLOCATION, Accomodation.class).setParameter("location", location).getResultList();
 
         if (accomodations == null) {
             return new ArrayList<>();

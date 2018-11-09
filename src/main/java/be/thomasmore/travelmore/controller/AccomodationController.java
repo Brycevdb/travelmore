@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.controller;
 
 import be.thomasmore.travelmore.domain.Accomodation;
+import be.thomasmore.travelmore.domain.Location;
 import be.thomasmore.travelmore.service.AccomodationService;
 
 import javax.faces.bean.ManagedBean;
@@ -30,8 +31,8 @@ public class AccomodationController {
         return this.accomodationService.findAllAccomodations();
     }
 
-    public List<Accomodation> getAccomodationByLocation(int plaatsId) {
-        return this.accomodationService.findAccomodationByLocation(plaatsId);
+    public List<Accomodation> getAccomodationByLocation(Location location) {
+        return this.accomodationService.findAccomodationByLocation(location);
     }
 
     public List<Accomodation> getAccomodationByFreePlaces (int freePlaces) {
