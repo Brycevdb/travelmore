@@ -7,12 +7,14 @@ import be.thomasmore.travelmore.service.LocationService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
 @ViewScoped
 public class LocationController {
     private Location newLocation = new Location();
+    private List<Location> locations = new ArrayList<Location>();
 
     @Inject
     private LocationService locationService;
@@ -21,8 +23,8 @@ public class LocationController {
         return newLocation;
     }
 
-    public List<Location> getByName(String search){
-        return this.locationService.getAllByName(search);
+    public void getByName(String search){
+        this.locations = this.locationService.getAllByName(search);
     }
 
     public void setNewLocation(Location newLocation) {
@@ -30,7 +32,11 @@ public class LocationController {
     }
 
     public List<Location> getLocations(){
-        return this.locationService.findAllLocations();
+        if(this.locations.size() == 0) {
+            this.locations = this.locationService.findAllLocations();
+        }
+
+        return this.locations;
     }
 
 
