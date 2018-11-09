@@ -21,5 +21,9 @@ public class TripOfUserRepository {
         return userTrips;
     }
 
+    public void insert(TripOfUser tos) {
+        entityManager.persist(tos);
+    }
+
 
 }
