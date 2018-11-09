@@ -37,7 +37,7 @@
     </nav>
     <p>Welkom #{userController.currentUser.fullname}</p>
 
-    <p:dataTable var="location" value="#{homeController.locations}" id="locationDataTable">
+    <p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
         <p:column headerText="Id">
             <h:outputText value="#{location.id}" />
         </p:column>
