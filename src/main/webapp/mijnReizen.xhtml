@@ -23,12 +23,14 @@
                     <li><h:commandButton styleClass="test" value="Home" action="#{homeController.index}" /></li>
                     <h:inputHidden value="#{userController.currentUser.id}" id="hiddenId" />
                     <li><h:commandButton styleClass="test" value="Mijn reizen" action="#{tripOfUserController.index}" /></li>
-                    <li><a href="#">Page 2</a></li>
+
 
                 </ul>
+                <div class="navigatie">
                 <ul class="nav navbar-nav navbar-right">
                     <li><h:commandButton styleClass="test" value="User login" action="#{userController.index}" /></li>
                 </ul>
+                </div>
             </h:form>
         </div>
 
