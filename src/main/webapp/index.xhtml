@@ -40,7 +40,7 @@
     <p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
         <p:column headerText="Name">
             <h:inputHidden id="lLocation" binding="#{llocation}" value="#{location.id}" />
-            <p:commandButton value="#{location.name}" action="#{accomodationController.getForLocation(llocation.value)}" />
+            <p:commandButton value="#{location.name}" action="#{accomodationController.getAccomodationByLocation(llocation.value)}" />
         </p:column>
     </p:dataTable>
 
