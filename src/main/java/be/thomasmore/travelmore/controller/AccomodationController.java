@@ -45,9 +45,9 @@ public class AccomodationController {
         return "index_accomodation";
     }
 
-    public String getForLocation(String id){
+    /*public String getForLocation(String id){
         this.accomodations = this.accomodationService.findAccomodationByLocation(Integer.parseInt(id));
 
         return "accomodations_list";
-    }
+    }*/
 }
