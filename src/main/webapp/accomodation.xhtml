@@ -36,10 +36,10 @@
 
     </nav>
         <div class="container">
-        <p>Selecteer de gewenste accomodatie voor deze bestemming: </p>
+        <p>Selecteer de gewenste accommodatie voor deze bestemming: </p>
 
             <p:dataTable styleClass="test" var="accomodation" value="#{accomodationController.accomodations}" id="accomodationDataTable">
-               <p:column headerText="Accomodatie">
+               <p:column headerText="Accommodatie">
                    <h:inputHidden id="accomodationId" binding="#{accomodationId}" value="#{accomodation.id}" />
                    <p:commandButton value="#{accomodation.name}" action="/" />
                </p:column>
