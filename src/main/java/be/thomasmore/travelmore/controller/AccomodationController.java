@@ -31,8 +31,9 @@ public class AccomodationController {
         return this.accomodationService.findAllAccomodations();
     }
 
-    public List<Accomodation> getAccomodationByLocation(Location location) {
-        return this.accomodationService.findAccomodationByLocation(location);
+    public String getAccomodationByLocation(Location location) {
+        accomodations = this.accomodationService.findAccomodationByLocation(location);
+        return "accomodation?faces-redirect=true";
     }
 
     public List<Accomodation> getAccomodationByFreePlaces (int freePlaces) {
