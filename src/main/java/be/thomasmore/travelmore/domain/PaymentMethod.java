@@ -1,22 +1,27 @@
 package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "paymentMethod")
-
+@Table(name = "paymentmethod")
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = PaymentMethod.FIND_ALL,
+                        query = "SELECT p FROM PaymentMethod p"
+                )
+        }
+)
 public class PaymentMethod {
     public static final String FIND_ALL = "paymentMethod.findAll";
     @Id
     private int id;
-    @Column(name = "userId")
-    private int userId;
-    @Column (name = "paymentmethodId")
-    private int paymentmethodId;
-    @Column (name = "extra")
-    private String extra;
-    @Column (name = "active")
-    private boolean active;
+    @Column(name = "name")
+    private String name;
+
+    @OneToMany(mappedBy = "paymentMethod")
+    private List<UserPaymentMethods> userPaymentMethods;
 
     public int getId() {
         return id;
@@ -26,35 +31,19 @@ public class PaymentMethod {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getPaymentmethodId() {
-        return paymentmethodId;
+    public List<UserPaymentMethods> getUserPaymentMethods() {
+        return userPaymentMethods;
     }
 
-    public void setPaymentmethodId(int paymentmethodId) {
-        this.paymentmethodId = paymentmethodId;
-    }
-
-    public String getExtra() {
-        return extra;
-    }
-
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setUserPaymentMethods(List<UserPaymentMethods> userPaymentMethods) {
+        this.userPaymentMethods = userPaymentMethods;
     }
 }

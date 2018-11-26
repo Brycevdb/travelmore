@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.service;
 
 import be.thomasmore.travelmore.domain.TripOfUser;
+import be.thomasmore.travelmore.domain.User;
 import be.thomasmore.travelmore.repository.TripOfUserRepository;
 
 import javax.inject.Inject;
@@ -11,8 +12,8 @@ public class TripOfUserService {
     private TripOfUserRepository tripofuserRepository;
 
 
-    public List<TripOfUser> findByUserId(int userId) {
-        return tripofuserRepository.findByUserId(userId);
+    public List<TripOfUser> findByUserId(User user) {
+        return tripofuserRepository.findByUserId(user);
     }
 
     public void insert(TripOfUser tos) {

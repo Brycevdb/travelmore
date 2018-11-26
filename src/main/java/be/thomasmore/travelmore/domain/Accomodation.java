@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "accomodation")
@@ -21,16 +22,14 @@ import javax.persistence.*;
         }
 )
 public class Accomodation {
-    public static final String FIND_ALL = "location.findAll";
-    public static final String FIND_BYLOCATION = "location.findByLocation";
-    public static final String FIND_BYFREEPLACES = "location.findByFreePlaces";
+    public static final String FIND_ALL = "accomodation.findAll";
+    public static final String FIND_BYLOCATION = "accomodation.findByLocation";
+    public static final String FIND_BYFREEPLACES = "accomodation.findByFreePlaces";
 
     @Id
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name = "periodId")
-    private int periodId;
     @Column(name = "freePlaces")
     private int freePlaces;
     @Column(name = "priceAPerson")
@@ -39,6 +38,13 @@ public class Accomodation {
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
+
+    @OneToMany(mappedBy = "accomodation")
+    private List<Trip> trips;
+
+    @ManyToOne
+    @JoinColumn(name = "periodId")
+    private Period period;
 
     public int getId() {
         return id;
@@ -56,14 +62,6 @@ public class Accomodation {
         this.name = name;
     }
 
-    public int getPeriodId() {
-        return periodId;
-    }
-
-    public void setPeriodId(int periodId) {
-        this.periodId = periodId;
-    }
-
     public int getFreePlaces() {
         return freePlaces;
     }
@@ -78,5 +76,29 @@ public class Accomodation {
 
     public void setPriceAPerson(double pricaAPerson) {
         this.priceAPerson = pricaAPerson;
+    }
+
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Period getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Period period) {
+        this.period = period;
     }
 }

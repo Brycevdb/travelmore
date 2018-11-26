@@ -8,7 +8,7 @@ import javax.persistence.*;
         {
                 @NamedQuery(
                         name = TripOfUser.FIND_BYUSERID,
-                        query = "SELECT t FROM TripOfUser t WHERE t.userId >= :userId"
+                        query = "SELECT t FROM TripOfUser t WHERE t.user >= :user"
                 )
         }
 )
@@ -18,16 +18,22 @@ public class TripOfUser {
 
     @Id
     private int id;
-    @Column (name = "userId")
-    private int userId;
-    @Column (name = "tripId")
-    private int tripId;
     @Column (name = "totalprice")
     private double totalprice;
-    @Column (name = "paymentId")
-    private int paymentId;
     @Column (name = "totalpeeps")
     private int totalpeeps;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "tripId")
+    private Trip trip;
+
+    @OneToOne
+    @JoinColumn(name = "paymentId")
+    private Payments payments;
 
     public int getId() {
         return id;
@@ -35,22 +41,6 @@ public class TripOfUser {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getTripId() {
-        return tripId;
-    }
-
-    public void setTripId(int tripId) {
-        this.tripId = tripId;
     }
 
     public double getTotalprice() {
@@ -61,19 +51,35 @@ public class TripOfUser {
         this.totalprice = totalprice;
     }
 
-    public int getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
-    }
-
     public int getTotalpeeps() {
         return totalpeeps;
     }
 
     public void setTotalpeeps(int totalpeeps) {
         this.totalpeeps = totalpeeps;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
+    }
+
+    public Payments getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Payments payments) {
+        this.payments = payments;
     }
 }

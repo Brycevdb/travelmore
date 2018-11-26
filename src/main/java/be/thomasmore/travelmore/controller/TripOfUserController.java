@@ -23,9 +23,9 @@ public class TripOfUserController implements Serializable{
     @Inject
     private TripOfUserService tripOfUserService;
 
-    public List<TripOfUser> getTripsByUserId (int userId) {
-        if(userId != 0){
-            return this.tripOfUserService.findByUserId(userId);
+    public List<TripOfUser> getTripsByUserId (User user) {
+        if(user != null){
+            return this.tripOfUserService.findByUserId(user);
         }
         return null;
     }

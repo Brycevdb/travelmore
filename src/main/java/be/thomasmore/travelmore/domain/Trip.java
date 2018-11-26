@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "trip")
@@ -9,20 +10,34 @@ import javax.persistence.*;
                 @NamedQuery(
                         name = Trip.FIND_ALL,
                         query = "SELECT t FROM Trip t"
+                ),
+                @NamedQuery(
+                        name = Trip.FIND_BYTRANSPORT,
+                        query = "SELECT t FROM Trip t WHERE t.transport = :transport"
                 )
         }
 )
 public class Trip {
     public static final String FIND_ALL = "trip.findAll";
+    public static final String FIND_BYTRANSPORT = "trip.findByTransport";
 
     @Id
     private int id;
-    @Column (name = "departure")
-    private int departure;
-    @Column (name = "accomodationId")
-    private int accomodationId;
-    @Column (name = "transportId")
-    private int transportId;
+
+    @ManyToOne
+    @JoinColumn(name = "transportId")
+    private Transport transport;
+
+    @ManyToOne
+    @JoinColumn(name = "accomodationId")
+    private Accomodation accomodation;
+
+    @ManyToOne
+    @JoinColumn(name = "departure")
+    private Location locationt;
+
+    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER)
+    private List<TripOfUser> tripOfUsers;
 
     public int getId() {
         return id;
@@ -32,27 +47,35 @@ public class Trip {
         this.id = id;
     }
 
-    public int getDeparture() {
-        return departure;
+    public Transport getTransport() {
+        return transport;
     }
 
-    public void setDeparture(int departure) {
-        this.departure = departure;
+    public void setTransport(Transport transport) {
+        this.transport = transport;
     }
 
-    public int getAccomodationId() {
-        return accomodationId;
+    public Accomodation getAccomodation() {
+        return accomodation;
     }
 
-    public void setAccomodationId(int accomodationId) {
-        this.accomodationId = accomodationId;
+    public void setAccomodation(Accomodation accomodation) {
+        this.accomodation = accomodation;
     }
 
-    public int getTransportId() {
-        return transportId;
+    public Location getLocationt() {
+        return locationt;
     }
 
-    public void setTransportId(int transportId) {
-        this.transportId = transportId;
+    public void setLocationt(Location locationt) {
+        this.locationt = locationt;
+    }
+
+    public List<TripOfUser> getTripOfUsers() {
+        return tripOfUsers;
+    }
+
+    public void setTripOfUsers(List<TripOfUser> tripOfUsers) {
+        this.tripOfUsers = tripOfUsers;
     }
 }

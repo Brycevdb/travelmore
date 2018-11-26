@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -40,8 +41,16 @@ public class User {
     private String pass;
     @Column (name = "mail")
     private String mail;
-    @Column (name = "landId")
-    private int landId;
+
+    @ManyToOne
+    @JoinColumn(name = "landId")
+    private Location locationu;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserPaymentMethods> userPaymentMethods;
+
+    @OneToMany(mappedBy = "user")
+    private List<TripOfUser>tripOfUsers;
 
     public User(){ }
 
@@ -93,19 +102,35 @@ public class User {
         this.mail = mail;
     }
 
-    public int getLandId() {
-        return landId;
-    }
-
-    public void setLandId(int landId) {
-        this.landId = landId;
-    }
-
     public String getPass() { return this.pass; }
 
     public void setPass(String password) { this.pass = password; }
 
     public String getFullname(){
         return this.name + " " + this.famname;
+    }
+
+    public List<UserPaymentMethods> getUserPaymentMethods() {
+        return userPaymentMethods;
+    }
+
+    public void setUserPaymentMethods(List<UserPaymentMethods> userPaymentMethods) {
+        this.userPaymentMethods = userPaymentMethods;
+    }
+
+    public Location getLocationu() {
+        return locationu;
+    }
+
+    public void setLocationu(Location locationu) {
+        this.locationu = locationu;
+    }
+
+    public List<TripOfUser> getTripOfUsers() {
+        return tripOfUsers;
+    }
+
+    public void setTripOfUsers(List<TripOfUser> tripOfUsers) {
+        this.tripOfUsers = tripOfUsers;
     }
 }

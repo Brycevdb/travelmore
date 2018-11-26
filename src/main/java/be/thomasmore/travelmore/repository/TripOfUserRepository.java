@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.repository;
 
 import be.thomasmore.travelmore.domain.TripOfUser;
+import be.thomasmore.travelmore.domain.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,8 +12,8 @@ public class TripOfUserRepository {
     @PersistenceContext(unitName = "travelMorePU")
     private EntityManager entityManager;
 
-    public List<TripOfUser> findByUserId(int userId){
-        List<TripOfUser> userTrips = entityManager.createNamedQuery(TripOfUser.FIND_BYUSERID, TripOfUser.class).setParameter("userId", userId).getResultList();
+    public List<TripOfUser> findByUserId(User user){
+        List<TripOfUser> userTrips = entityManager.createNamedQuery(TripOfUser.FIND_BYUSERID, TripOfUser.class).setParameter("user", user).getResultList();
 
         if (userTrips == null) {
             return new ArrayList<>();

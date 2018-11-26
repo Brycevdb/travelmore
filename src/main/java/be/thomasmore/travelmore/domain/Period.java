@@ -2,6 +2,7 @@ package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "period")
@@ -21,6 +22,9 @@ public class Period {
     private Date start;
     @Column (name = "end")
     private Date end;
+
+    @OneToMany(mappedBy = "period")
+    private List<Accomodation> accomodations;
 
     public int getId() {
         return id;
@@ -44,5 +48,13 @@ public class Period {
 
     public void setEnd(Date end) {
         this.end = end;
+    }
+
+    public List<Accomodation> getAccomodations() {
+        return accomodations;
+    }
+
+    public void setAccomodations(List<Accomodation> accomodations) {
+        this.accomodations = accomodations;
     }
 }

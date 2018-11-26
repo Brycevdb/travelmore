@@ -49,4 +49,8 @@ public class LocationController {
 
         return "index_location";
     }
+
+    public String goTo(Location location) {
+        return "index";
+    }
 }

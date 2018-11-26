@@ -3,21 +3,30 @@ package be.thomasmore.travelmore.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "userPaymentMethod")
-
+@Table(name = "userpaymentmethod")
+@NamedQueries({
+        @NamedQuery(
+                name = UserPaymentMethods.FIND_ALL,
+                query = "SELECT u FROM UserPaymentMethods u"
+        )
+})
 public class UserPaymentMethods {
     public static final String FIND_ALL = "userPaymentMethod.findAll";
 
     @Id
     private int id;
-    @Column(name = "userId")
-    private int userId;
-    @Column(name = "paymentmethodId")
-    private int paymentmethodId;
     @Column(name = "extra")
     private String extra;
     @Column(name = "active")
     private boolean active;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "paymentmethodId")
+    private PaymentMethod paymentMethod;
 
     public int getId() {
         return id;
@@ -25,22 +34,6 @@ public class UserPaymentMethods {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getPaymentmethodId() {
-        return paymentmethodId;
-    }
-
-    public void setPaymentmethodId(int paymentmethodId) {
-        this.paymentmethodId = paymentmethodId;
     }
 
     public String getExtra() {

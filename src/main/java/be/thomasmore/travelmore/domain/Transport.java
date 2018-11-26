@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "transport")
@@ -27,6 +28,9 @@ public class Transport {
     @Column (name = "priceaperson")
     private Double priceaperson;
 
+    @OneToMany(mappedBy = "transport", fetch = FetchType.EAGER)
+    private List<Trip> trips;
+
     public int getId() {
         return id;
     }
@@ -49,5 +53,13 @@ public class Transport {
 
     public void setPriceaperson(Double priceaperson) {
         this.priceaperson = priceaperson;
+    }
+
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
     }
 }
