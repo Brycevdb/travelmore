@@ -14,6 +14,9 @@
             <ui:repeat value="#{l.location}" var="t">
                 <li>#{t.name}</li>
             </ui:repeat>
+            <ui:repeat value="#{l.trips}" var="a">
+                <li>#{a.id}</li>
+            </ui:repeat>
         </ol>
     </ui:repeat>
 </f:view>
