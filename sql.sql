@@ -271,8 +271,8 @@ UNLOCK TABLES;
 INSERT INTO `travelmore`.`location` (`name`, `coords`) VALUES ('Brussel', '0.0');
 INSERT INTO `travelmore`.`location` (`name`, `coords`) VALUES ('Antwerpen', '1.1');
 
-INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`) VALUES ('Hotel', '1', '5', '50', '50');
-INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`) VALUES ('Camping Kitsch', '2', '3', '200', '15');
+INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`) VALUES ('Hotel', '1', '1', '50', '50');
+INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`) VALUES ('Camping Kitsch', '2', '2', '200', '15');
 
 INSERT INTO `travelmore`.`user` (`name`, `famname`, `role`, `pass`, `mail`, `landId`) VALUES ('User', 'user', '1', 'iets', 'iets', '1');
 INSERT INTO `travelmore`.`user` (`name`, `famname`, `role`, `pass`, `mail`, `landId`) VALUES ('User2', 'user', '0', 'iets2', 'iets2', '2');
@@ -282,3 +282,6 @@ INSERT INTO `travelmore`.`paymentmethod` (`name`) VALUES ('Bancontact');
 
 INSERT INTO `travelmore`.`userpaymentmethod` (`userId`, `paymentmethodId`, `extra`, `active`) VALUES ('1', '1', 'iets', '1');
 INSERT INTO `travelmore`.`userpaymentmethod` (`userId`, `paymentmethodId`, `extra`, `active`) VALUES ('2', '2', 'iets', '0');
+
+INSERT INTO `travelmore`.`period` (`start`, `end`) VALUES ('2018-01-01', '2018-01-02');
+INSERT INTO `travelmore`.`period` (`start`, `end`) VALUES ('1970-01-01', '1970-01-02');
