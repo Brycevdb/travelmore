@@ -2,6 +2,7 @@ package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -49,8 +50,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserPaymentMethods> userPaymentMethods;
 
-    @OneToMany(mappedBy = "user")
-    private List<TripOfUser>tripOfUsers;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<TripOfUser> tripOfUsers;
 
     public User(){ }
 
@@ -126,11 +127,11 @@ public class User {
         this.locationu = locationu;
     }
 
-    public List<TripOfUser> getTripOfUsers() {
+    public Set<TripOfUser> getTripOfUsers() {
         return tripOfUsers;
     }
 
-    public void setTripOfUsers(List<TripOfUser> tripOfUsers) {
+    public void setTripOfUsers(Set<TripOfUser> tripOfUsers) {
         this.tripOfUsers = tripOfUsers;
     }
 }

@@ -291,3 +291,9 @@ INSERT INTO `travelmore`.`tripofuser` (`userId`, `tripId`, `totalprice`, `paymen
 
 INSERT INTO `travelmore`.`payment` (`userpaymentId`, `transaction`) VALUES ('1', '2018-01-01');
 INSERT INTO `travelmore`.`payment` (`userpaymentId`, `transaction`) VALUES ('2', '2018-01-02');
+
+INSERT INTO `travelmore`.`transport` (`name`, `priceaperson`) VALUES ('auto', '10');
+INSERT INTO `travelmore`.`transport` (`name`, `priceaperson`) VALUES ('vliegtuig', '200');
+
+INSERT INTO `travelmore`.`trip` (`departure`, `accomodationId`, `transportId`) VALUES ('1', '2', '1');
+INSERT INTO `travelmore`.`trip` (`departure`, `accomodationId`, `transportId`) VALUES ('2', '1', '2');

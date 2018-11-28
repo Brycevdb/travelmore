@@ -9,6 +9,10 @@ import javax.persistence.*;
                 @NamedQuery(
                         name = TripOfUser.FIND_BYUSERID,
                         query = "SELECT t FROM TripOfUser t WHERE t.user >= :user"
+                ),
+                @NamedQuery(
+                        name = TripOfUser.FIND_ALL,
+                        query = "SELECT t from TripOfUser t"
                 )
         }
 )

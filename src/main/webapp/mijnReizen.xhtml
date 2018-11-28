@@ -38,18 +38,18 @@
         <div class="container">
         <p>Hallo #{userController.currentUser.fullname}, dit zijn uw reizen</p>
 
-            <p:dataTable styleClass="test" var="mijnReis" value="#{tripOfUserController.getTripsByUserId(userController.currentUser.id)}" id="reizenDataTable">
-                <!--<p:column headerText="Vertek">
-                    <h:outputText value="" />
+            <p:dataTable styleClass="test" var="mijnReis" value="#{userController.currentUser.tripOfUsers}" id="reizenDataTable">
+                <p:column headerText="Vertek">
+                    <h:outputText value="#{mijnReis.trip.locationt.name}" />
                 </p:column>
 
-                <p:column headerText="Aankomst">
-                    <h:outputText value="" />
+                <p:column headerText="Accomodatie">
+                    <h:outputText value="#{mijnReis.trip.accomodation.name}" />
                 </p:column>
 
                 <p:column headerText="Plaats">
-                    <h:outputText value="" />
-                </p:column>-->
+                    <h:outputText value="#{mijnReis.trip.accomodation.location.name}" />
+                </p:column>
 
                 <p:column headerText="Prijs">
                     <h:outputText value="#{mijnReis.totalprice}" />
