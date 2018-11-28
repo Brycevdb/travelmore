@@ -8,14 +8,25 @@
       xmlns:p="http://primefaces.org/ui">
 <f:view>
     <h:outputLabel value="Hello, world"/>
-    <ui:repeat value="#{accomodationController.accomodations}" var="l">
+    <ui:repeat value="#{locationController.locations}" var="l">
 
         <ol>
-            <ui:repeat value="#{l.location}" var="t">
+            <ui:repeat value="#{l.accomodations}" var="t">
                 <li>#{t.name}</li>
             </ui:repeat>
-            <ui:repeat value="#{l.trips}" var="a">
-                <li>#{a.id}</li>
+        </ol>
+    </ui:repeat>
+    <ui:repeat value="#{tripController.trips}" var="tr">
+        <ol>
+            <ui:repeat value="#{tr.transport}" var="tra">
+                <li>#{tra.name}</li>
+            </ui:repeat>
+        </ol>
+    </ui:repeat>
+    <ui:repeat value="#{accomodationController.accomodations}" var="a">
+        <ol>
+            <ui:repeat value="#{a.location}" var="p">
+                <li>#{p.name}</li>
             </ui:repeat>
         </ol>
     </ui:repeat>

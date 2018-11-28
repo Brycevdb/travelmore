@@ -285,3 +285,9 @@ INSERT INTO `travelmore`.`userpaymentmethod` (`userId`, `paymentmethodId`, `extr
 
 INSERT INTO `travelmore`.`period` (`start`, `end`) VALUES ('2018-01-01', '2018-01-02');
 INSERT INTO `travelmore`.`period` (`start`, `end`) VALUES ('1970-01-01', '1970-01-02');
+
+INSERT INTO `travelmore`.`tripofuser` (`userId`, `tripId`, `totalprice`, `paymentId`, `totalpeeps`) VALUES ('1', '1', '50', '1', '2');
+INSERT INTO `travelmore`.`tripofuser` (`userId`, `tripId`, `totalprice`, `paymentId`, `totalpeeps`) VALUES ('2', '1', '50', '1', '2');
+
+INSERT INTO `travelmore`.`payment` (`userpaymentId`, `transaction`) VALUES ('1', '2018-01-01');
+INSERT INTO `travelmore`.`payment` (`userpaymentId`, `transaction`) VALUES ('2', '2018-01-02');

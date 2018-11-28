@@ -15,13 +15,11 @@ import java.util.List;
 )
 public class PaymentMethod {
     public static final String FIND_ALL = "paymentMethod.findAll";
+
     @Id
     private int id;
     @Column(name = "name")
     private String name;
-
-    @OneToMany(mappedBy = "paymentMethod")
-    private List<UserPaymentMethods> userPaymentMethods;
 
     public int getId() {
         return id;
@@ -37,13 +35,5 @@ public class PaymentMethod {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<UserPaymentMethods> getUserPaymentMethods() {
-        return userPaymentMethods;
-    }
-
-    public void setUserPaymentMethods(List<UserPaymentMethods> userPaymentMethods) {
-        this.userPaymentMethods = userPaymentMethods;
     }
 }

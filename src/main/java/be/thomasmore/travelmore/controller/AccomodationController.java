@@ -27,8 +27,12 @@ public class AccomodationController {
         this.newAccomodation = accomodation;
     }
 
-    public List<Accomodation> getAccomodations() {
+    public List<Accomodation> getAllAccomodations() {
         return this.accomodationService.findAllAccomodations();
+    }
+
+    public List<Accomodation> getAccomodations() {
+        return accomodations;
     }
 
     public String getAccomodationByLocation(Location location) {
@@ -44,6 +48,10 @@ public class AccomodationController {
         this.newAccomodation = accomodation;
 
         return "index_accomodation";
+    }
+
+    public void setAccomodations(List<Accomodation> accomodations) {
+        this.accomodations = accomodations;
     }
 
     /*public String getForLocation(String id){
