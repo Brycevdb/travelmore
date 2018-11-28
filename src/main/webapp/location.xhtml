@@ -27,32 +27,35 @@
 
                 </ul>
                 <div class="navigatie">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><h:commandButton styleClass="test" value="User login" action="#{userController.index}" /></li>
-                </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><h:commandButton styleClass="test" value="User login" action="#{userController.index}" /></li>
+                    </ul>
                 </div>
             </h:form>
         </div>
 
     </nav>
-        <div class="container">
-            <p:dataTable styleClass="test" var="accomodation" value="#{accomodationController.selected}" id="accomodationDataTable">
-                <!--<p:column headerText="Accommodatie">
-                    <h:inputHidden id="accomodationId" binding="#{accomodationId}" value="#{accomodation.id}" />
-                    <p:commandButton value="#{accomodation.name}" action="#{accomodationController}" />
-                </p:column>-->
-                <p:column headerText="Periode">
-                    <p>#{accomodation.period.start}</p>
-                </p:column>
-                <p:column headerText="Beschikbare plaatsen">
-                    <p>#{accomodation.freePlaces}</p>
-                </p:column>
-                <p:column headerText="Prijs per persoon">
-                    <p> €#{accomodation.priceAPerson}</p>
-                </p:column>
+    <div class="container">
+        <p>Selecteer de gewenste accommodatie voor deze bestemming: </p>
+
+        <p:dataTable styleClass="test" var="accomodation" value="#{locationController.selected.accomodations}" id="accomodationDataTable">
+            <p:column headerText="Accommodatie">
+                <h:inputHidden id="accomodationId" binding="#{accomodationId}" value="#{accomodation.id}" />
+                <p:commandButton value="#{accomodation.name}" action="#{accomodationController.showAccomodation(accomodation)}" />
+            </p:column>
+            <p:column headerText="Periode">
+                <p>#{accomodation.period}</p>
+            </p:column>
+            <p:column headerText="Beschikbare plaatsen">
+                <p>#{accomodation.freePlaces}</p>
+            </p:column>
+            <p:column headerText="Prijs per persoon">
+                <p> €#{accomodation.priceAPerson}</p>
+            </p:column>
 
 
-            </p:dataTable>
-        </div>
+        </p:dataTable>
+
+    </div>
 </h:body>
 </html>

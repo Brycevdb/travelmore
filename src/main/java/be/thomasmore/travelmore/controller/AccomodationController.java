@@ -5,16 +5,18 @@ import be.thomasmore.travelmore.domain.Location;
 import be.thomasmore.travelmore.service.AccomodationService;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class AccomodationController {
     private Accomodation newAccomodation = new Accomodation();
     private List<Accomodation> accomodations = new ArrayList<Accomodation>();
+    private Accomodation selected;
 
     @Inject
     private AccomodationService accomodationService;
@@ -35,8 +37,8 @@ public class AccomodationController {
         return accomodations;
     }
 
-    public String getAccomodationByLocation(Location location) {
-        accomodations = this.accomodationService.findAccomodationByLocation(location);
+    public String showAccomodation(Accomodation accomodation) {
+        selected = accomodation;
         return "accomodation?faces-redirect=true";
     }
 
@@ -52,6 +54,14 @@ public class AccomodationController {
 
     public void setAccomodations(List<Accomodation> accomodations) {
         this.accomodations = accomodations;
+    }
+
+    public Accomodation getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Accomodation selected) {
+        this.selected = selected;
     }
 
     /*public String getForLocation(String id){

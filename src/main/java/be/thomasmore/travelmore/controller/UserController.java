@@ -44,7 +44,7 @@ public class UserController implements Serializable {
     // try logging in with DakkeOG@Ifuckedyour.mom & root
     public String login(String mail, String pass){
         try {
-            currentUser = this.userService.findByMailandPassword(mail, getHash(pass));
+            currentUser = this.userService.findByMailandPassword(mail, pass);
             toolmessage = "";
         }catch (Exception e){
             toolmessage = "Something went wrong when logging in";
@@ -59,7 +59,7 @@ public class UserController implements Serializable {
         this.logout();
 
 //        Generate user
-        User u = new User(name, famname, getHash(pass), mail);
+        User u = new User(name, famname, pass, mail);
 
 //        Check if mail already in use
         boolean inuse = false;
