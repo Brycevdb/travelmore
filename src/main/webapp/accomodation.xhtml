@@ -36,13 +36,18 @@
 
     </nav>
         <div class="container">
+            <h1>#{accomodationController.selected.name}</h1>
+            <h3>Informatie over deze accomodatie:</h3>
             <p:dataTable styleClass="test" var="accomodation" value="#{accomodationController.selected}" id="accomodationDataTable">
                 <!--<p:column headerText="Accommodatie">
                     <h:inputHidden id="accomodationId" binding="#{accomodationId}" value="#{accomodation.id}" />
                     <p:commandButton value="#{accomodation.name}" action="#{accomodationController}" />
                 </p:column>-->
-                <p:column headerText="Periode">
+                <p:column headerText="Start">
                     <p>#{accomodation.period.start}</p>
+                </p:column>
+                <p:column headerText="Einde">
+                    <p>#{accomodation.period.end}</p>
                 </p:column>
                 <p:column headerText="Beschikbare plaatsen">
                     <p>#{accomodation.freePlaces}</p>
@@ -50,8 +55,9 @@
                 <p:column headerText="Prijs per persoon">
                     <p> €#{accomodation.priceAPerson}</p>
                 </p:column>
-
-
+                <!--<p:column headerText="Reizen">
+                    <p>#{accomodation.trips}</p>
+                </p:column>-->
             </p:dataTable>
         </div>
 </h:body>

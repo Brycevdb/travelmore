@@ -32,8 +32,11 @@ public class Location {
     @Column(name = "coords")
     private String coords;
 
-    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "location")
     private List<Accomodation> accomodations;
+
+    @OneToMany(mappedBy = "locationt", fetch = FetchType.EAGER)
+    private List<Trip> trips;
 
     public int getId() {
         return id;
@@ -65,5 +68,13 @@ public class Location {
 
     public void setAccomodations(List<Accomodation> accomodations) {
         this.accomodations = accomodations;
+    }
+
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
     }
 }

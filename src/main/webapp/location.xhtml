@@ -36,24 +36,29 @@
 
     </nav>
     <div class="container">
-        <p>Selecteer de gewenste accommodatie voor deze bestemming: </p>
+        <p>Selecteer de gewenste reis voor deze bestemming: </p>
 
-        <p:dataTable styleClass="test" var="accomodation" value="#{locationController.selected.accomodations}" id="accomodationDataTable">
+        <p:dataTable styleClass="test" var="trip" value="#{locationController.selected.trips}" id="accomodationDataTable">
             <p:column headerText="Accommodatie">
-                <h:inputHidden id="accomodationId" binding="#{accomodationId}" value="#{accomodation.id}" />
-                <p:commandButton value="#{accomodation.name}" action="#{accomodationController.showAccomodation(accomodation)}" />
+                <h:inputHidden id="accomodationId" binding="#{accomodationId}" value="#{trip.accomodation.id}" />
+                <p:commandButton value="#{trip.accomodation.name}" action="#{accomodationController.showAccomodation(trip.accomodation)}" />
             </p:column>
             <p:column headerText="Periode">
-                <p>#{accomodation.period}</p>
+                <p>Start: #{trip.accomodation.period.start}</p>
+                <p>Einde: #{trip.accomodation.period.end}</p>
             </p:column>
             <p:column headerText="Beschikbare plaatsen">
-                <p>#{accomodation.freePlaces}</p>
+                <p>#{trip.accomodation.freePlaces}</p>
             </p:column>
             <p:column headerText="Prijs per persoon">
-                <p> €#{accomodation.priceAPerson}</p>
+                <p> €#{trip.accomodation.priceAPerson}</p>
             </p:column>
-
-
+            <p:column headerText="Transport">
+                <p>#{trip.transport.name}</p>
+            </p:column>
+            <p:column>
+                <h:commandButton value="Boeken" action="/"/>
+            </p:column>
         </p:dataTable>
 
     </div>
