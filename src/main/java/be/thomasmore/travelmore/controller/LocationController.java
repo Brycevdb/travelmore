@@ -49,6 +49,16 @@ public class LocationController {
         return this.locations;
     }
 
+    public List<Location> autoComplete(String search) {
+        List<Location> filteredLocations = new ArrayList<Location>();
+        for (Location location : locations) {
+            if (location.getName().toLowerCase().contains(search)) {
+                filteredLocations.add(location);
+            }
+        }
+        return filteredLocations;
+    }
+
     public String showAccomodations(Location location) {
         selected = location;
         return "location";

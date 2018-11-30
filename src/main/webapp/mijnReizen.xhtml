@@ -39,7 +39,7 @@
         <p>Hallo #{userController.currentUser.fullname}, dit zijn uw reizen</p>
 
             <p:dataTable styleClass="test" var="mijnReis" value="#{userController.currentUser.tripOfUsers}" id="reizenDataTable">
-                <p:column headerText="Vertek">
+                <p:column headerText="Vertrek">
                     <h:outputText value="#{mijnReis.trip.locationt.name}" />
                 </p:column>
 

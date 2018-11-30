@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head><title>Travel More!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -45,8 +46,9 @@
     </p:dataTable>
 
     <h:form>
-        <p:inputText id="Search" binding="#{search}" required="true" label="Search"></p:inputText>
-        <h:commandButton value="Search" action="#{locationController.guessByName(search.value)}" update=":locationDataTable" />
+        <p:outputLabel value="Zoek op bestemming:"/>
+        <p:inputText id="Search" label="Search" binding="#{search}" required="true"/>
+        <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
     </h:form>
 
 </h:body>
