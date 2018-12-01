@@ -49,6 +49,7 @@
         <p:outputLabel value="Zoek op bestemming:"/>
         <p:inputText id="Search" label="Search" binding="#{search}" required="true"/>
         <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
+        <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataTable" />
     </h:form>
 
 </h:body>
