@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css"/>
 </h:head>
-<h:body>
+<h:body style="background-color:#fae1dd">
     <div class="hoofding">
         <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
     </div>
@@ -36,7 +36,9 @@
         </div>
 
     </nav>
+    <div class="container">
     <p>Welkom #{userController.currentUser.fullname}</p>
+
 
     <!--<p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
         <p:column headerText="Name">
@@ -45,7 +47,7 @@
         </p:column>
     </p:dataTable>-->
 
-    <h:form>
+    <h:form style="margin-bottom:20px;">
         <p:outputLabel value="Zoek op bestemming:"/>
         <p:inputText id="Search" label="Search" binding="#{search}" required="true"/>
         <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
@@ -62,5 +64,6 @@
             </p:panel>
         </p:column>
     </p:dataGrid>
+    </div>
 </h:body>
 </html>
