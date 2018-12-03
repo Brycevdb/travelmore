@@ -2,10 +2,12 @@ package be.thomasmore.travelmore.controller;
 
 import be.thomasmore.travelmore.domain.*;
 import be.thomasmore.travelmore.service.AccomodationService;
+import be.thomasmore.travelmore.service.PaymentMethodService;
 import be.thomasmore.travelmore.service.TripOfUserService;
 import be.thomasmore.travelmore.domain.TripOfUser;
 import be.thomasmore.travelmore.service.UserService;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
@@ -21,15 +23,27 @@ public class TripOfUserController implements Serializable{
 
     @Inject
     private TripOfUserService tripOfUserService;
+    @Inject
+    private PaymentMethodService paymentMethodService;
 
-    private PaymentMethod paymentMethod;
+    private String paymentMethod;
+    private List<String> paymentMethods;
     private int people;
 
-    public PaymentMethod getPaymentMethod() {
+    @PostConstruct
+    public void init() {
+        paymentMethods = new ArrayList<String>();
+        List<PaymentMethod> all = paymentMethodService.findAllPaymentMethods();
+        for (PaymentMethod paymentMethod1 : all) {
+            paymentMethods.add(paymentMethod1.getName());
+        }
+    }
+
+    public String getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(PaymentMethod paymentMethod) {
+    public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -39,6 +53,14 @@ public class TripOfUserController implements Serializable{
 
     public void setPeople(int people) {
         this.people = people;
+    }
+
+    public List<String> getPaymentMethods() {
+        return paymentMethods;
+    }
+
+    public void setPaymentMethods(List<String> paymentMethods) {
+        this.paymentMethods = paymentMethods;
     }
 
     public List<TripOfUser> getTripsByUserId (User user) {
@@ -55,10 +77,13 @@ public class TripOfUserController implements Serializable{
 
     public void booking(Trip trip, User user) {
         TripOfUser newTripOfUser = new TripOfUser();
+        double totalPrice = (trip.getAccomodation().getPriceAPerson() + trip.getTransport().getPriceaperson()) * people;
         newTripOfUser.setTotalpeeps(people);
         newTripOfUser.setTrip(trip);
         newTripOfUser.setUser(user);
-        //newTripOfUser.setPayments();
-        tripOfUserService.insert(newTripOfUser);
+        newTripOfUser.setPayments(new Payments());
+        newTripOfUser.setTotalprice(totalPrice);
+        System.out.println(newTripOfUser);
+        //tripOfUserService.insert(newTripOfUser);
     }
 }

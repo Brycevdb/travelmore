@@ -17,7 +17,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
+                <a class="navbar-brand" href="#">TravelMore</a>
             </div>
             <h:form>
                 <ul class="nav navbar-nav">
@@ -42,12 +42,12 @@
         <h:form>
             <h3>Kies betaalmethode:</h3>
             <p:selectOneRadio id="paymentMethod" value="#{tripOfUserController.paymentMethod}">
-                <f:selectItems value="#{paymentMethodController.paymentMethods}" var="n" itemLabel="#{n.name}" itemValue="#{n}"/>
+                <f:selectItems value="#{tripOfUserController.paymentMethods}" var="n" itemLabel="#{n}"/>
             </p:selectOneRadio>
             <p:outputLabel for="nrofpeople">Aantal personen</p:outputLabel>
             <p:inputText type="number" id="nrofpeople" value="#{tripOfUserController.people}"><f:convertNumber integerOnly="true"/></p:inputText>
 
-            <p:commandButton value="Bevestigen" action="#{tripOfUserController.booking}"/>
+            <p:commandButton value="Bevestigen" action="#{tripOfUserController.booking(tripController.selected, userController.currentUser)}"/>
         </h:form>
     </div>
 </h:body>
