@@ -50,9 +50,11 @@
     </p:dataTable>-->
 
     <h:form style="margin-bottom:20px; ">
-        <p:outputLabel value="Zoek op bestemming:"/>
-        <p:inputText id="Search" label="Search" binding="#{search}" required="true"/>
-        <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
+        <p:outputLabel value="Zoek op bestemming:" for="acSimple" />
+        <p:autoComplete id="acSimple" value="#{locationController.search}" var="location" itemlabel="#{location.name}" completeMethod="#{locationController.autoComplete}" />
+       <!-- <p:outputLabel value="Zoek op bestemming:"/>
+        <p:inputText id="Search" label="Search" value="#{locationController.search} binding="#{search}" required="true"/> -->
+        <h:commandButton value="Search" action="#{locationController.getByName}" update=":locationDataTable" />
         <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataGrid" />
     </h:form>
 

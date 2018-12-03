@@ -17,6 +17,7 @@ public class LocationController {
     private Location newLocation = new Location();
     private List<Location> locations = new ArrayList<Location>();
     private Location selected;
+    private String search;
 
     @Inject
     private LocationService locationService;
@@ -25,7 +26,7 @@ public class LocationController {
         return newLocation;
     }
 
-    public void getByName(String search){
+    public void getByName(){
         this.locations = this.locationService.getAllByName(search);
     }
     public void reset(){
@@ -75,6 +76,14 @@ public class LocationController {
         this.newLocation = location;
 
         return "index_location";
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 
     public String goTo(Location location) {
