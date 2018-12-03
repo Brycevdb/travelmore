@@ -28,6 +28,9 @@ public class LocationController {
     public void getByName(String search){
         this.locations = this.locationService.getAllByName(search);
     }
+    public void reset(){
+        this.locations = this.locationService.findAllLocations();
+    }
 
     public void setNewLocation(Location newLocation) {
         this.newLocation = newLocation;

@@ -17,7 +17,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
+                <a class="navbar-brand" href="#">TravalMore</a>
             </div>
             <h:form>
             <ul class="nav navbar-nav">
@@ -49,6 +49,7 @@
         <p:outputLabel value="Zoek op bestemming:"/>
         <p:inputText id="Search" label="Search" binding="#{search}" required="true"/>
         <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
+        <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataTable" />
     </h:form>
 
 </h:body>
