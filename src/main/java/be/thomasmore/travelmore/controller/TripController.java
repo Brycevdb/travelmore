@@ -4,14 +4,16 @@ import be.thomasmore.travelmore.domain.Trip;
 import be.thomasmore.travelmore.service.TripService;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import java.util.List;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class TripController {
     private Trip newTrip = new Trip();
+    private Trip selected;
 
     @Inject
     private TripService tripService;
@@ -32,7 +34,20 @@ public class TripController {
         return this.tripService.findAllTrips();
     }
 
+    public Trip getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Trip selected) {
+        this.selected = selected;
+    }
+
     public void submit() {
         this.tripService.insert(newTrip);
+    }
+
+    public String goToBooking(Trip trip) {
+        selected = trip;
+        return "booking";
     }
 }

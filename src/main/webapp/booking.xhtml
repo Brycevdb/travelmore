@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head><title>Travel More!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -36,31 +37,18 @@
 
     </nav>
     <div class="container">
-        <p>Selecteer de gewenste reis voor deze bestemming: </p>
+        <h1>Boek deze reis:</h1>
+        <p>#{tripController.selected.locationt.name} - #{tripController.selected.accomodation.name} voor #{userController.currentUser.fullname}</p>
+        <h:form>
+            <h3>Kies betaalmethode:</h3>
+            <p:selectOneRadio id="paymentMethod" value="#{tripOfUserController.paymentMethod}">
+                <f:selectItems value="#{paymentMethodController.paymentMethods}" var="n" itemLabel="#{n.name}" itemValue="#{n}"/>
+            </p:selectOneRadio>
+            <p:outputLabel for="nrofpeople">Aantal personen</p:outputLabel>
+            <p:inputText type="number" id="nrofpeople" value="#{tripOfUserController.people}"><f:convertNumber integerOnly="true"/></p:inputText>
 
-        <p:dataTable styleClass="test" var="trip" value="#{locationController.selected.trips}" id="accomodationDataTable">
-            <p:column headerText="Accommodatie">
-                <h:inputHidden id="accomodationId" binding="#{accomodationId}" value="#{trip.accomodation.id}" />
-                <p:commandButton value="#{trip.accomodation.name}" action="#{accomodationController.showAccomodation(trip.accomodation)}" />
-            </p:column>
-            <p:column headerText="Periode">
-                <p>Start: #{trip.accomodation.period.start}</p>
-                <p>Einde: #{trip.accomodation.period.end}</p>
-            </p:column>
-            <p:column headerText="Beschikbare plaatsen">
-                <p>#{trip.accomodation.freePlaces}</p>
-            </p:column>
-            <p:column headerText="Prijs per persoon">
-                <p> €#{trip.accomodation.priceAPerson}</p>
-            </p:column>
-            <p:column headerText="Transport">
-                <p>#{trip.transport.name}</p>
-            </p:column>
-            <p:column>
-                <p:commandButton value="Boeken" action="#{tripController.goToBooking(trip)}"/>
-            </p:column>
-        </p:dataTable>
-
+            <p:commandButton value="Bevestigen" action="#{tripOfUserController.booking}"/>
+        </h:form>
     </div>
 </h:body>
 </html>
