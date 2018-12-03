@@ -38,19 +38,29 @@
     </nav>
     <p>Welkom #{userController.currentUser.fullname}</p>
 
-    <p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
+    <!--<p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
         <p:column headerText="Name">
             <h:inputHidden id="lLocation" binding="#{llocation}" value="#{location.id}" />
             <p:commandButton value="#{location.name}" action="#{locationController.showAccomodations(location)}" />
         </p:column>
-    </p:dataTable>
+    </p:dataTable>-->
 
     <h:form>
         <p:outputLabel value="Zoek op bestemming:"/>
         <p:inputText id="Search" label="Search" binding="#{search}" required="true"/>
         <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
-        <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataTable" />
+        <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataGrid" />
     </h:form>
 
+    <p:dataGrid var="location" value="#{locationController.locations}" id="locationDataGrid" columns="3" rows="10">
+        <p:column>
+            <p:panel header="#{location.name}">
+                <h:panelGrid columns="1">
+                    <p:graphicImage name="/images/travel.jpg" height="168px" width="224px" style="display: block; margin: 0px auto;"/>
+                    <p:commandButton value="Bekijk" action="#{locationController.showAccomodations(location)}" />
+                </h:panelGrid>
+            </p:panel>
+        </p:column>
+    </p:dataGrid>
 </h:body>
 </html>
