@@ -1,13 +1,17 @@
 .hoofding img {
-
 max-width:100%;}
 
-body {font-family: 'Ubuntu', sans-serif;}
+body {font-family: 'Ubuntu', sans-serif;
+    background-color: #fae1dd !important;}
+
 nav div.container-fluid form ul .navbar-right {padding-right:20px;}
-.navbar-dark {background-color:#01222b !important;}
+.navbar-dark {background-color:#01222b !important;
+
+}
 
 .navigatie {padding-right:20px !important;}
 
+.ui-panel-content{background-color:#01222b;}
 
 h1 {text-align:center;}
 

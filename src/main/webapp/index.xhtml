@@ -8,16 +8,18 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head><title>Travel More!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
     <link rel="stylesheet" href="style.css"/>
 </h:head>
-<h:body>
+<h:body style="background-color:#fae1dd">
+
     <div class="hoofding">
         <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
     </div>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">TravalMore</a>
+                <a class="navbar-brand" href="#">TravelMore</a>
             </div>
             <h:form>
             <ul class="nav navbar-nav">
@@ -36,21 +38,36 @@
         </div>
 
     </nav>
+    <div class="container">
     <p>Welkom #{userController.currentUser.fullname}</p>
 
-    <p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
+
+    <!--<p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
         <p:column headerText="Name">
             <h:inputHidden id="lLocation" binding="#{llocation}" value="#{location.id}" />
             <p:commandButton value="#{location.name}" action="#{locationController.showAccomodations(location)}" />
         </p:column>
-    </p:dataTable>
+    </p:dataTable>-->
 
-    <h:form>
-        <p:outputLabel value="Zoek op bestemming:"/>
-        <p:inputText id="Search" label="Search" binding="#{search}" required="true"/>
-        <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
-        <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataTable" />
+    <h:form style="margin-bottom:20px; ">
+        <p:outputLabel value="Zoek op bestemming:" for="acSimple" />
+        <p:autoComplete id="acSimple" value="#{locationController.search}" var="location" itemlabel="#{location.name}" completeMethod="#{locationController.autoComplete}" />
+       <!-- <p:outputLabel value="Zoek op bestemming:"/>
+        <p:inputText id="Search" label="Search" value="#{locationController.search} binding="#{search}" required="true"/> -->
+        <h:commandButton value="Search" action="#{locationController.getByName}" update=":locationDataTable" />
+        <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataGrid" />
     </h:form>
 
+    <p:dataGrid var="location" value="#{locationController.locations}" id="locationDataGrid" columns="3" rows="10">
+        <p:column>
+            <p:panel header="#{location.name}">
+                <h:panelGrid columns="1">
+                    <p:graphicImage name="/images/travel.jpg" height="168px" width="224px" style="display: block; margin: 0px auto;"/>
+                    <p:commandButton value="Bekijk" action="#{locationController.showAccomodations(location)}" />
+                </h:panelGrid>
+            </p:panel>
+        </p:column>
+    </p:dataGrid>
+    </div>
 </h:body>
 </html>
