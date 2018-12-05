@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.mail.MessagingException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,10 +23,13 @@ public class TripOfUserController implements Serializable{
     private TripOfUserService tripOfUserService;
     @Inject
     private PaymentMethodService paymentMethodService;
+    @Inject
+    private MailService mailService;
 
     private String paymentMethod;
     private List<String> paymentMethods;
     private int people;
+    private String statusMessage = "";
 
     @PostConstruct
     public void init() {
@@ -72,7 +76,17 @@ public class TripOfUserController implements Serializable{
         return "mijnReizen";
     }
 
-    public void booking(Trip trip, User user) {
+    public void send(String email, String subject, String message) {
+        statusMessage = "Message Sent";
+        try {
+            mailService.sendMessage(email, subject, message);
+        }
+        catch(MessagingException ex) {
+            statusMessage = ex.getMessage();
+        }
+    }
+
+    public String booking(Trip trip, User user) {
         TripOfUser newTripOfUser = new TripOfUser();
         double totalPrice = (trip.getAccomodation().getPriceAPerson() + trip.getTransport().getPriceaperson()) * people;
 
@@ -84,5 +98,11 @@ public class TripOfUserController implements Serializable{
         newTripOfUser.setPaymentMethod(paymentMethodService.findByName(paymentMethod));
 
         tripOfUserService.insert(newTripOfUser);
+
+        send(user.getMail(), "Boeking TravelMore", "Beste " + user.getFullname() +  ", uw reis met locatie " + trip.getLocationt().getName() + " is succesvol geboekt. Fijne reis! TravelMore Groep8 ");
+
+        return "mijnReizen";
+
+
     }
 }

@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.controller;
 
 import be.thomasmore.travelmore.domain.Trip;
+import be.thomasmore.travelmore.domain.User;
 import be.thomasmore.travelmore.service.TripService;
 
 import javax.faces.bean.ManagedBean;
@@ -46,7 +47,10 @@ public class TripController {
         this.tripService.insert(newTrip);
     }
 
-    public String goToBooking(Trip trip) {
+    public String goToBooking(Trip trip, User user) {
+        if (user.getName() == null) {
+            return "index_user";
+        }
         selected = trip;
         return "booking";
     }
