@@ -1,28 +1,6 @@
 .hoofding img {
 max-width:100%;}
 
-body {font-family: 'Ubuntu', sans-serif;
-    background-color: #fae1dd !important;}
-
-nav div.container-fluid form ul .navbar-right {padding-right:20px;}
-.navbar-dark {background-color:#01222b !important;
-
+body {
+    background-color: #ECEFF1 !important;
 }
-
-.navigatie {padding-right:20px !important;}
-
-.ui-panel-content{background-color:#01222b;}
-
-h1 {text-align:center;}
-
-input[type=submit].test {
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;}
-
-.container .paneel {  width:400px;
-                        display:block;}

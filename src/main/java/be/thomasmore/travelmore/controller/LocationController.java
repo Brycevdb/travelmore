@@ -6,6 +6,7 @@ import be.thomasmore.travelmore.service.LocationService;
 import org.apache.http.client.utils.DateUtils;
 
 
+import javax.el.MethodExpression;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
@@ -20,8 +21,9 @@ import java.util.*;
 public class LocationController {
     private Location newLocation = new Location();
     private List<Location> locations = new ArrayList<Location>();
-    private List<Trip> selected;
+    private Location selected;
     private List<Trip> filteredSelected;
+
     private String search;
 
     @Inject
@@ -31,22 +33,26 @@ public class LocationController {
         return newLocation;
     }
 
-    public void getByName(){
-        this.locations = this.locationService.getAllByName(search);
-    }
     public void reset(){
         this.locations = this.locationService.findAllLocations();
+    }
+
+    public void resetFields(){
+        this.search = "";
     }
 
     public void setNewLocation(Location newLocation) {
         this.newLocation = newLocation;
     }
 
-    public List<Trip> getSelected() {
+    public Location getSelected() {
+        if(this.selected == null){
+            selected = new Location();
+        }
         return selected;
     }
 
-    public void setSelected(List<Trip> selected) {
+    public void setSelected(Location selected) {
         this.selected = selected;
     }
 
@@ -59,8 +65,10 @@ public class LocationController {
     }
 
     public List<Location> getLocations(){
-        if(this.locations.size() == 0) {
-            this.locations = this.locationService.findAllLocations();
+        if(this.search != null && this.search.length() >= 3) {
+            this.locations = this.locationService.getAllByName(this.search);
+        }else{
+            reset();
         }
 
         return this.locations;
@@ -77,7 +85,7 @@ public class LocationController {
     }
 
     public String showTrips(Location location) {
-        selected = location.getTrips();
+        selected = location;
         return "location";
     }
 
@@ -91,16 +99,16 @@ public class LocationController {
         return "index_location";
     }
 
-    public String getSearch() {
-        return search;
-    }
-
-    public void setSearch(String search) {
-        this.search = search;
-    }
-
     public String goTo(Location location) {
         return "index";
+    }
+
+    public List<Location> complete(String search) {
+        this.search = search;
+
+        System.out.println("SEARCH: " + this.search);
+
+        return this.locationService.getAllByName(this.search);
     }
 
     public boolean filterByFreeplaces(Object value, Object filter, Locale locale) {
