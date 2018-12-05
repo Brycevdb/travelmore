@@ -69,12 +69,12 @@ UNLOCK TABLES;
 -- Table structure for table `payment`
 --
 
-DROP TABLE IF EXISTS `payment`;
+/*DROP TABLE IF EXISTS `payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/* SET character_set_client = utf8mb4 ;
 CREATE TABLE `payment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userpaymentId` int(11) DEFAULT NULL,
+  `methodId` int(11) DEFAULT NULL,
   `transaction` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
@@ -85,8 +85,8 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
-UNLOCK TABLES;
+/*/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
+/*UNLOCK TABLES;*/
 
 --
 -- Table structure for table `paymentmethod`
@@ -192,8 +192,9 @@ CREATE TABLE `tripofuser` (
   `userId` int(11) DEFAULT NULL,
   `tripId` int(11) DEFAULT NULL,
   `totalprice` double DEFAULT NULL,
-  `paymentId` int(11) DEFAULT NULL,
   `totalpeeps` int(11) DEFAULT NULL,
+  `methodId` int(11) DEFAULT NULL,
+  `transaction` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -237,9 +238,9 @@ UNLOCK TABLES;
 -- Table structure for table `userpaymentmethod`
 --
 
-DROP TABLE IF EXISTS `userpaymentmethod`;
+/*DROP TABLE IF EXISTS `userpaymentmethod`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/* SET character_set_client = utf8mb4 ;
 CREATE TABLE `userpaymentmethod` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) DEFAULT NULL,
@@ -255,8 +256,8 @@ CREATE TABLE `userpaymentmethod` (
 
 LOCK TABLES `userpaymentmethod` WRITE;
 /*!40000 ALTER TABLE `userpaymentmethod` DISABLE KEYS */;
-/*!40000 ALTER TABLE `userpaymentmethod` ENABLE KEYS */;
-UNLOCK TABLES;
+/*/*!40000 ALTER TABLE `userpaymentmethod` ENABLE KEYS */;
+/*UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -280,17 +281,12 @@ INSERT INTO `travelmore`.`user` (`name`, `famname`, `role`, `pass`, `mail`, `lan
 INSERT INTO `travelmore`.`paymentmethod` (`name`) VALUES ('Paypal');
 INSERT INTO `travelmore`.`paymentmethod` (`name`) VALUES ('Bancontact');
 
-INSERT INTO `travelmore`.`userpaymentmethod` (`userId`, `paymentmethodId`, `extra`, `active`) VALUES ('1', '1', 'iets', '1');
-INSERT INTO `travelmore`.`userpaymentmethod` (`userId`, `paymentmethodId`, `extra`, `active`) VALUES ('2', '2', 'iets', '0');
-
 INSERT INTO `travelmore`.`period` (`start`, `end`) VALUES ('2018-01-01', '2018-01-02');
 INSERT INTO `travelmore`.`period` (`start`, `end`) VALUES ('1970-01-01', '1970-01-02');
 
-INSERT INTO `travelmore`.`tripofuser` (`userId`, `tripId`, `totalprice`, `paymentId`, `totalpeeps`) VALUES ('1', '1', '50', '1', '2');
-INSERT INTO `travelmore`.`tripofuser` (`userId`, `tripId`, `totalprice`, `paymentId`, `totalpeeps`) VALUES ('2', '1', '50', '1', '2');
+INSERT INTO `travelmore`.`tripofuser` (`userId`, `tripId`, `totalprice`, `totalpeeps`, `methodId`, `transaction`) VALUES ('2', '2', '500', '5', '2', '2018-01-01');
+INSERT INTO `travelmore`.`tripofuser` (`userId`, `tripId`, `totalprice`, `totalpeeps`, `methodId`, `transaction`) VALUES ('1', '1', '500', '3', '1', '2018-01-02');
 
-INSERT INTO `travelmore`.`payment` (`userpaymentId`, `transaction`) VALUES ('1', '2018-01-01');
-INSERT INTO `travelmore`.`payment` (`userpaymentId`, `transaction`) VALUES ('2', '2018-01-02');
 
 INSERT INTO `travelmore`.`transport` (`name`, `priceaperson`) VALUES ('auto', '10');
 INSERT INTO `travelmore`.`transport` (`name`, `priceaperson`) VALUES ('vliegtuig', '200');

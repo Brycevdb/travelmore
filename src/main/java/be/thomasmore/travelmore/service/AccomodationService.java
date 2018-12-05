@@ -4,9 +4,11 @@ import be.thomasmore.travelmore.domain.Accomodation;
 import be.thomasmore.travelmore.domain.Location;
 import be.thomasmore.travelmore.repository.AccomodationRepository;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
 
+@Stateless
 public class AccomodationService {
     @Inject
     private AccomodationRepository accomodationRepository;

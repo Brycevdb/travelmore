@@ -8,9 +8,11 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head><title>Travel More!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
     <link rel="stylesheet" href="style.css"/>
 </h:head>
 <h:body style="background-color:#fae1dd">
+
     <div class="hoofding">
         <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
     </div>
@@ -47,10 +49,12 @@
         </p:column>
     </p:dataTable>-->
 
-    <h:form style="margin-bottom:20px;">
-        <p:outputLabel value="Zoek op bestemming:"/>
-        <p:inputText id="Search" label="Search" binding="#{search}" required="true"/>
-        <h:commandButton value="Search" action="#{locationController.getByName(search.value)}" update=":locationDataTable" />
+    <h:form style="margin-bottom:20px; ">
+        <p:outputLabel value="Zoek op bestemming:" for="acSimple" />
+        <p:autoComplete id="acSimple" value="#{locationController.search}" var="location" itemlabel="#{location.name}" completeMethod="#{locationController.autoComplete}" />
+       <!-- <p:outputLabel value="Zoek op bestemming:"/>
+        <p:inputText id="Search" label="Search" value="#{locationController.search} binding="#{search}" required="true"/> -->
+        <h:commandButton value="Search" action="#{locationController.getByName}" update=":locationDataTable" />
         <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataGrid" />
     </h:form>
         <p:commandButton value="send mail" action="#{homeController.send('vdb.bryce@gmail.com', 'test', 'test')}"/>
