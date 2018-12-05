@@ -57,7 +57,7 @@
         <h:commandButton value="Search" action="#{locationController.getByName}" update=":locationDataTable" />
         <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataGrid" />
     </h:form>
-
+        <p:commandButton value="send mail" action="#{homeController.send('vdb.bryce@gmail.com', 'test', 'test')}"/>
     <p:dataGrid var="location" value="#{locationController.locations}" id="locationDataGrid" columns="3" rows="10">
         <p:column>
             <p:panel header="#{location.name}">

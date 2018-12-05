@@ -22,4 +22,8 @@ public class PaymentMethodRepository {
         }
         return paymentMethods;
     }
+
+    public PaymentMethod findByName(String name) {
+        return entityManager.createNamedQuery(PaymentMethod.FIND_BYNAME, PaymentMethod.class).setParameter("name", name).getSingleResult();
+    }
 }

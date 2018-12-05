@@ -10,11 +10,16 @@ import java.util.List;
                 @NamedQuery(
                         name = PaymentMethod.FIND_ALL,
                         query = "SELECT p FROM PaymentMethod p"
+                ),
+                @NamedQuery(
+                        name = PaymentMethod.FIND_BYNAME,
+                        query = "SELECT p FROM PaymentMethod p WHERE p.name = :name"
                 )
         }
 )
 public class PaymentMethod {
     public static final String FIND_ALL = "paymentMethod.findAll";
+    public static final String FIND_BYNAME = "paymentMethod.findByName";
 
     @Id
     private int id;

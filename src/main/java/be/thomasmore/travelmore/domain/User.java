@@ -47,9 +47,6 @@ public class User {
     @JoinColumn(name = "landId")
     private Location locationu;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserPaymentMethods> userPaymentMethods;
-
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<TripOfUser> tripOfUsers;
 
@@ -109,14 +106,6 @@ public class User {
 
     public String getFullname(){
         return this.name + " " + this.famname;
-    }
-
-    public List<UserPaymentMethods> getUserPaymentMethods() {
-        return userPaymentMethods;
-    }
-
-    public void setUserPaymentMethods(List<UserPaymentMethods> userPaymentMethods) {
-        this.userPaymentMethods = userPaymentMethods;
     }
 
     public Location getLocationu() {
