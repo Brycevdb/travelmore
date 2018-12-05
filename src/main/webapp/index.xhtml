@@ -51,11 +51,13 @@
 
     <h:form style="margin-bottom:20px; ">
         <p:outputLabel value="Zoek op bestemming:" for="acSimple" />
-        <p:autoComplete id="acSimple" value="#{locationController.search}" var="location" itemlabel="#{location.name}" completeMethod="#{locationController.autoComplete}" />
-       <!-- <p:outputLabel value="Zoek op bestemming:"/>
-        <p:inputText id="Search" label="Search" value="#{locationController.search} binding="#{search}" required="true"/> -->
-        <h:commandButton value="Search" action="#{locationController.getByName}" update=":locationDataTable" />
-        <h:commandButton value="Reset" action="#{locationController.reset()}" update=":locationDataGrid" />
+        <p:autoComplete id="acSimple" value="#{locationController.selected}" var="Location" itemValue="#{Location}" itemLabel="#{Location.name}" converter="#{locationConverter}" completeMethod="#{locationController.complete}"
+                        dropdown="true">
+            <p:ajax event="itemSelect" update="locationDataGrid" />
+            <p:ajax event="keydown" update="locationDataGrid" />
+        </p:autoComplete>
+        <h:commandButton value="Search" update=":locationDataTable" />
+        <h:commandButton value="Reset" action="#{locationController.resetFields()}" update=":locationDataGrid" />
     </h:form>
         <p:commandButton value="send mail" action="#{homeController.send('vdb.bryce@gmail.com', 'test', 'test')}"/>
     <p:dataGrid var="location" value="#{locationController.locations}" id="locationDataGrid" columns="3" rows="10">
