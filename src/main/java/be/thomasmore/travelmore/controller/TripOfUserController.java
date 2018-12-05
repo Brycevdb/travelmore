@@ -86,7 +86,7 @@ public class TripOfUserController implements Serializable{
         }
     }
 
-    public void booking(Trip trip, User user) {
+    public String booking(Trip trip, User user) {
         TripOfUser newTripOfUser = new TripOfUser();
         double totalPrice = (trip.getAccomodation().getPriceAPerson() + trip.getTransport().getPriceaperson()) * people;
 
@@ -101,6 +101,7 @@ public class TripOfUserController implements Serializable{
 
         send(user.getMail(), "Boeking TravelMore", "Beste " + user.getFullname() +  ", uw reis met locatie " + trip.getLocationt().getName() + " is succesvol geboekt. Fijne reis! TravelMore Groep8 ");
 
+        return "mijnReizen";
 
 
     }
