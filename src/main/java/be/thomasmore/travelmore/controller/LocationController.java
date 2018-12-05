@@ -1,22 +1,27 @@
 package be.thomasmore.travelmore.controller;
 
 import be.thomasmore.travelmore.domain.Location;
+import be.thomasmore.travelmore.domain.Trip;
 import be.thomasmore.travelmore.service.LocationService;
+import org.apache.http.client.utils.DateUtils;
 
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @ManagedBean
 @SessionScoped
 public class LocationController {
     private Location newLocation = new Location();
     private List<Location> locations = new ArrayList<Location>();
-    private Location selected;
+    private List<Trip> selected;
+    private List<Trip> filteredSelected;
     private String search;
 
     @Inject
@@ -37,12 +42,20 @@ public class LocationController {
         this.newLocation = newLocation;
     }
 
-    public Location getSelected() {
+    public List<Trip> getSelected() {
         return selected;
     }
 
-    public void setSelected(Location selected) {
+    public void setSelected(List<Trip> selected) {
         this.selected = selected;
+    }
+
+    public List<Trip> getFilteredSelected() {
+        return filteredSelected;
+    }
+
+    public void setFilteredSelected(List<Trip> filteredSelected) {
+        this.filteredSelected = filteredSelected;
     }
 
     public List<Location> getLocations(){
@@ -63,8 +76,8 @@ public class LocationController {
         return filteredLocations;
     }
 
-    public String showAccomodations(Location location) {
-        selected = location;
+    public String showTrips(Location location) {
+        selected = location.getTrips();
         return "location";
     }
 
@@ -88,5 +101,54 @@ public class LocationController {
 
     public String goTo(Location location) {
         return "index";
+    }
+
+    public boolean filterByFreeplaces(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim();
+        if (filterText == null||filterText.equals("")) {
+            return true;
+        }
+
+        if (value == null) {
+            return false;
+        }
+
+        return ((Comparable)value).compareTo(Integer.valueOf(filterText)) > 0;
+    }
+
+    public boolean filterByPrice(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim();
+        if (filterText == null||filterText.equals("")) {
+            return true;
+        }
+
+        if (value == null) {
+            return false;
+        }
+
+        return ((Comparable)value).compareTo(Double.valueOf(filterText)) > 0;
+    }
+
+    public boolean filterByDate(Object value, Object filter, Locale locale) {
+
+        if( filter == null ) {
+            return true;
+        }
+
+        if( value == null ) {
+            return false;
+        }
+
+        SimpleDateFormat filterFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+        SimpleDateFormat valueFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date filterDate;
+        Date valueDate;
+
+        try {
+            filterDate = filterFormat.parse(filter.toString());
+            valueDate = valueFormat.parse(value.toString());
+        } catch (ParseException e) {return false;}
+
+        return valueDate.after(filterDate);
     }
 }

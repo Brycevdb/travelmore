@@ -12,6 +12,7 @@ CREATE TABLE `accomodation` (
   `periodId` int(11) DEFAULT NULL,
   `freeplaces` int(11) DEFAULT NULL,
   `priceaperson` double DEFAULT NULL,
+  `photourl` varchar(45) default null,
   PRIMARY KEY (`id`)
 );
 
@@ -31,6 +32,7 @@ CREATE TABLE `location` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `coords` varchar(45) DEFAULT NULL,
+  `photourl` varchar(45) default null,
   PRIMARY KEY (`id`)
 );
 
@@ -168,11 +170,11 @@ UNLOCK TABLES;
 -- Table structure for table `userpaymentmethod`
 --
 
-INSERT INTO `travelmore`.`location` (`name`, `coords`) VALUES ('Brussel', '0.0');
-INSERT INTO `travelmore`.`location` (`name`, `coords`) VALUES ('Antwerpen', '1.1');
+INSERT INTO `travelmore`.`location` (`name`, `coords`, `photourl`) VALUES ('Brussel', '0.0', 'https://cdn.pixabay.com/photo/2015/09/25/23/10/brussel-958408_960_720.jpg');
+INSERT INTO `travelmore`.`location` (`name`, `coords`, `photourl`) VALUES ('Antwerpen', '1.1', 'https://cdn.pixabay.com/photo/2016/02/05/15/20/antwerp-1181141_960_720.jpg');
 
-INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`) VALUES ('Hotel', '1', '1', '50', '50');
-INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`) VALUES ('Camping Kitsch', '2', '2', '200', '15');
+INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`, `photourl`) VALUES ('Hotel', '1', '1', '50', '50', 'https://images.freeimages.com/images/large-previews/12a/hotel-1220563.jpg');
+INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`, `photourl`) VALUES ('Camping Kitsch', '2', '2', '200', '15', 'https://cdn.pixabay.com/photo/2016/11/29/04/17/bonfire-1867275_960_720.jpg');
 
 INSERT INTO `travelmore`.`user` (`name`, `famname`, `role`, `pass`, `mail`, `landId`) VALUES ('User', 'user', '1', 'iets', 'iets', '1');
 INSERT INTO `travelmore`.`user` (`name`, `famname`, `role`, `pass`, `mail`, `landId`) VALUES ('User2', 'user', '0', 'iets2', 'iets2', '2');

@@ -8,7 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
+import java.util.Locale;
 
 @ManagedBean
 @SessionScoped
