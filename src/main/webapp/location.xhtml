@@ -57,7 +57,7 @@
                 <p>#{trip.transport.name}</p>
             </p:column>
             <p:column>
-                <p:commandButton value="Boeken" action="#{tripController.goToBooking(trip)}"/>
+                <p:commandButton value="Boeken" action="#{tripController.goToBooking(trip, userController.currentUser)}"/>
             </p:column>
         </p:dataTable>
 
