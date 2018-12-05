@@ -17,7 +17,7 @@ import java.util.Set;
                 ),
                 @NamedQuery(
                         name = Location.FIND_BY_NAME,
-                        query = "SELECT l FROM Location l WHERE l.name = :name"
+                        query = "SELECT l FROM Location l WHERE lower(l.name) like CONCAT('%', :name, '%')"
                 )
         }
 )
