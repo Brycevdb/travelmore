@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "tripofuser")
@@ -26,6 +27,8 @@ public class TripOfUser {
     private double totalprice;
     @Column (name = "totalpeeps")
     private int totalpeeps;
+    @Column (name = "transaction")
+    private Date transaction;
 
     @ManyToOne
     @JoinColumn(name = "userId")
@@ -35,9 +38,9 @@ public class TripOfUser {
     @JoinColumn(name = "tripId")
     private Trip trip;
 
-    @OneToOne
-    @JoinColumn(name = "paymentId")
-    private Payments payments;
+    @ManyToOne
+    @JoinColumn(name = "methodId")
+    private PaymentMethod paymentMethod;
 
     public int getId() {
         return id;
@@ -79,11 +82,19 @@ public class TripOfUser {
         this.trip = trip;
     }
 
-    public Payments getPayments() {
-        return payments;
+    public Date getTransaction() {
+        return transaction;
     }
 
-    public void setPayments(Payments payments) {
-        this.payments = payments;
+    public void setTransaction(Date transaction) {
+        this.transaction = transaction;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

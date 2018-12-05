@@ -19,4 +19,8 @@ public class PaymentMethodService {
     public List<PaymentMethod> findAllPaymentMethods(){
         return paymentMethodRepository.findAll();
     }
+
+    public PaymentMethod findByName(String name) {
+        return paymentMethodRepository.findByName(name);
+    }
 }

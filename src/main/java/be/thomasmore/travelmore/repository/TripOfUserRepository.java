@@ -3,8 +3,10 @@ package be.thomasmore.travelmore.repository;
 import be.thomasmore.travelmore.domain.TripOfUser;
 import be.thomasmore.travelmore.domain.User;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import java.util.ArrayList;
 import java.util.List;
 

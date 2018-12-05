@@ -4,9 +4,11 @@ import be.thomasmore.travelmore.domain.TripOfUser;
 import be.thomasmore.travelmore.domain.User;
 import be.thomasmore.travelmore.repository.TripOfUserRepository;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
 
+@Stateless
 public class TripOfUserService {
     @Inject
     private TripOfUserRepository tripofuserRepository;
