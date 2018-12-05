@@ -55,7 +55,7 @@ public class LocationController {
 
     public List<Location> autoComplete(String search) {
         List<Location> filteredLocations = new ArrayList<Location>();
-        for (Location location : locations) {
+        for (Location location : this.locations) {
             if (location.getName().toLowerCase().contains(search)) {
                 filteredLocations.add(location);
             }
