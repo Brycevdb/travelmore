@@ -7,34 +7,34 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head><title>Travel More!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
     <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="styles/fonts.css"/>
+    <link rel="stylesheet" href="styles/gatjas_main.css"/>
+    <link rel="stylesheet" href="styles/gatjas.css"/>
 </h:head>
 <h:body>
     <div class="hoofding">
         <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
     </div>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">TravelMore</a>
-            </div>
+
+    <nav class="paddedExtraSmall widthFull column centered">
+        <div class="container-fluid widthMaxed">
             <h:form>
                 <ul class="nav navbar-nav">
-                    <li><h:commandButton styleClass="test" value="Home" action="#{homeController.index}" /></li>
+                    <li><h:commandButton styleClass="navbutton paddedExtraSmall" value="Home" action="#{homeController.index}" /></li>
                     <h:inputHidden value="#{userController.currentUser.id}" id="hiddenId" />
-                    <li><h:commandButton styleClass="test" value="Mijn reizen" action="#{tripOfUserController.index}" /></li>
-
-
+                    <li><h:commandButton styleClass="navbutton paddedExtraSmall" value="Mijn reizen" action="#{tripOfUserController.index}" /></li>
                 </ul>
                 <div class="navigatie">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><h:commandButton styleClass="test" value="User login" action="#{userController.index}" /></li>
+                        <li><h:commandButton styleClass="navbutton paddedExtraSmall" value="#{userController.welcome}" action="#{userController.index}" /></li>
                     </ul>
                 </div>
             </h:form>
         </div>
-
     </nav>
+
     <div class="container">
         <p>Selecteer de gewenste reis voor deze bestemming: </p>
 

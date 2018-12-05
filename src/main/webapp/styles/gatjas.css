@@ -1,0 +1,22 @@
+nav{
+    background-color: #212121;
+}
+
+.navbutton{
+    color: #FFFFFF;
+    background: transparent;
+    border: 0;
+}
+
+span.widthFull > *{
+    width: 100%;
+}
+
+.ui-widget-content {
+    border: 0;
+    background: transparent;
+}
+
+.lightbacked{
+    background-color: #FFFFFF;
+}

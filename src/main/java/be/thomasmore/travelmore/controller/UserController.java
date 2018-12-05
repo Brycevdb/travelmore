@@ -34,6 +34,14 @@ public class UserController implements Serializable {
         return "index";
     }
 
+    public String getWelcome(){
+        if(this.getCurrentUser().getId() != 0){
+            return "Welkom " + this.getCurrentUser().getFullname();
+        }
+
+        return "Login";
+    }
+
     public User getCurrentUser(){
         return currentUser;
     }
