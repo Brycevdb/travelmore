@@ -1,20 +1,17 @@
 package be.thomasmore.travelmore.controller;
 
 import be.thomasmore.travelmore.domain.*;
-import be.thomasmore.travelmore.service.AccomodationService;
-import be.thomasmore.travelmore.service.PaymentMethodService;
-import be.thomasmore.travelmore.service.TripOfUserService;
+import be.thomasmore.travelmore.service.*;
 import be.thomasmore.travelmore.domain.TripOfUser;
-import be.thomasmore.travelmore.service.UserService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @ManagedBean
@@ -78,12 +75,14 @@ public class TripOfUserController implements Serializable{
     public void booking(Trip trip, User user) {
         TripOfUser newTripOfUser = new TripOfUser();
         double totalPrice = (trip.getAccomodation().getPriceAPerson() + trip.getTransport().getPriceaperson()) * people;
+
         newTripOfUser.setTotalpeeps(people);
         newTripOfUser.setTrip(trip);
         newTripOfUser.setUser(user);
-        newTripOfUser.setPayments(new Payments());
         newTripOfUser.setTotalprice(totalPrice);
-        System.out.println(newTripOfUser);
-        //tripOfUserService.insert(newTripOfUser);
+        newTripOfUser.setTransaction(new Date());
+        newTripOfUser.setPaymentMethod(paymentMethodService.findByName(paymentMethod));
+
+        tripOfUserService.insert(newTripOfUser);
     }
 }
