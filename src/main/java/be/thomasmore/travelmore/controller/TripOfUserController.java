@@ -76,10 +76,10 @@ public class TripOfUserController implements Serializable{
         return "mijnReizen";
     }
 
-    public void send(String email, String subject, String message) {
+    private void send(String email, String subject, String message) {
         statusMessage = "Message Sent";
         try {
-            mailService.sendMessage(email, subject, message);
+            MailService.sendMessage(email, subject, message);
         }
         catch(MessagingException ex) {
             statusMessage = ex.getMessage();

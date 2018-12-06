@@ -3,15 +3,11 @@ package be.thomasmore.travelmore.controller;
 import be.thomasmore.travelmore.domain.Location;
 import be.thomasmore.travelmore.domain.Trip;
 import be.thomasmore.travelmore.service.LocationService;
-import org.apache.http.client.utils.DateUtils;
 
 
-import javax.el.MethodExpression;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
