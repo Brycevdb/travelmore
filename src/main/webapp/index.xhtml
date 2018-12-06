@@ -5,8 +5,10 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-<h:head><title>Travel More!</title>
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Travel More!</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
     <link rel="stylesheet" href="style.css"/>
@@ -14,7 +16,7 @@
     <link rel="stylesheet" href="styles/gatjas_main.css"/>
     <link rel="stylesheet" href="styles/gatjas.css"/>
 </h:head>
-<h:body style="background-color:#fae1dd">
+<h:body>
 
     <div class="hoofding">
         <h:graphicImage name="/images/banner.jpg" alt="headerlogo"/>
@@ -26,7 +28,10 @@
                 <ul class="nav navbar-nav">
                     <li><h:commandButton styleClass="navbutton paddedExtraSmall" value="Home" action="#{homeController.index}" /></li>
                     <h:inputHidden value="#{userController.currentUser.id}" id="hiddenId" />
-                    <li><h:commandButton styleClass="navbutton paddedExtraSmall" value="Mijn reizen" action="#{tripOfUserController.index}" /></li>
+
+                    <c:if test="#{userController.currentUser.id > 0}">
+                        <li><h:commandButton styleClass="navbutton paddedExtraSmall" value="Mijn reizen" action="#{tripOfUserController.index}" /></li>
+                    </c:if>
                 </ul>
                 <div class="navigatie">
                     <ul class="nav navbar-nav navbar-right">
@@ -45,7 +50,7 @@
                 </h2>
 
                 <p class="readable widthHalf">
-                    Zie de wereld, het leven is te kort om niet te weten wat de wereld met zich meebrengt. Zoek naar bestemmingen gans de wereld rond.
+                    Zie de wereld, het leven is te kort om niet te weten wat de wereld met zich meebrengt. Zoek naar bestemmingen gans de aardbol rond.
                 </p>
 
                 <h:form styleClass="widthFull column">
