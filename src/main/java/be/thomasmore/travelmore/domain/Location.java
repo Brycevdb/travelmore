@@ -34,11 +34,11 @@ public class Location {
     @Column(name = "photourl")
     private String photourl;
 
-    @OneToMany(mappedBy = "location")
-    private List<Accomodation> accomodations;
+    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+    private Set<Accomodation> accomodations;
 
-    @OneToMany(mappedBy = "locationt", fetch = FetchType.EAGER)
-    private List<Trip> trips;
+    @OneToMany(mappedBy = "arrival", fetch = FetchType.EAGER)
+    private Set<Trip> trips;
 
     public int getId() {
         return id;
@@ -64,19 +64,19 @@ public class Location {
         this.coords = coords;
     }
 
-    public List<Accomodation> getAccomodations() {
+    public Set<Accomodation> getAccomodations() {
         return accomodations;
     }
 
-    public void setAccomodations(List<Accomodation> accomodations) {
+    public void setAccomodations(Set<Accomodation> accomodations) {
         this.accomodations = accomodations;
     }
 
-    public List<Trip> getTrips() {
+    public Set<Trip> getTrips() {
         return trips;
     }
 
-    public void setTrips(List<Trip> trips) {
+    public void setTrips(Set<Trip> trips) {
         this.trips = trips;
     }
 

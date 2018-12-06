@@ -24,4 +24,8 @@ public class TripService {
     public void insert(Trip trip) {
         tripRepository.insert(trip);
     }
+
+    public void delete(Trip trip) {
+        tripRepository.delete(tripRepository.findById(trip.getId()));
+    }
 }

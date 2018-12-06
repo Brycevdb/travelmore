@@ -72,7 +72,7 @@
                         <p:commandButton value="#{trip.accomodation.name}" action="#{accomodationController.showAccomodation(trip.accomodation)}" />
                     </p:column>
                     <p:column headerText="Reis locatie" filterBy="#{trip.accomodation.location.name}" filterMatchMode="contains">
-                        <h:outputText value="#{trip.accomodation.location.name}"/>
+                        <h:outputText value="#{trip.arrival.name}"/>
                     </p:column>
                     <p:column headerText="Vertrek" filterBy="#{trip.locationt.name}" filterMatchMode="contains">
                         <h:outputText value="#{trip.locationt.name}"/>

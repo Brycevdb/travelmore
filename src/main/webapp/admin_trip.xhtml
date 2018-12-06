@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head><title>Travel More!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -35,44 +36,50 @@
         </div>
     </nav>
 
-    <p:dataTable styleClass="test" var="location" value="#{locationController.getAll()}" id="locationDataTable">
+    <p:dataTable styleClass="test" var="trip" value="#{tripController.getAll()}" id="tripDataTable">
         <p:column headerText="Id">
-            <h:outputText value="#{location.id}" />
+            <h:outputText value="#{trip.id}" />
+        </p:column>
+        <p:column headerText="Accomodatie">
+            <h:outputText value="#{trip.accomodation.name}" />
+        </p:column>
+        <p:column headerText="Reis locatie">
+            <h:outputText value="#{trip.accomodation.location.name}" />
         </p:column>
 
-        <p:column headerText="Name">
-            <h:outputText value="#{location.name}" />
-        </p:column>
-
-        <p:column headerText="Coördinaten">
-            <h:outputText value="#{location.coords}" />
+        <p:column headerText="Vertrek">
+            <h:outputText value="#{trip.locationt.name}" />
         </p:column>
         <p:column>
-            <p:commandButton value="Delete" action="#{locationController.delete(location)}" update=":locationDataTable"/>
+            <p:commandButton value="Delete" action="#{tripController.delete(trip)}" update=":tripDataTable"/>
         </p:column>
     </p:dataTable>
     <h:form id="addLocationForm">
         <p:panel id="panel" header="Form" style="margin-bottom:10px;">
-            <h:panelGrid columns="4" cellpadding="5">
+            <p:panelGrid columns="4" cellpadding="5">
                 <p:column>
-                    <h:outputLabel for="locationName" value="Name:" />
-                    <p:inputText id="locationName" value="#{locationController.newLocation.name}" />
+                    <h:outputLabel for="tripLocation" value="Vertrek:" />
+                    <p:selectOneMenu id="tripLocation" value="#{tripController.newTrip.locationt}">
+                        <f:selectItems value="#{locationController.getAll()}" var="location" itemLabel="#{location.name}" itemValue="#{location}"/>
+                    </p:selectOneMenu>
                 </p:column>
                 <p:column>
-                    <h:outputLabel for="locationCode" value="Code:" />
-                    <p:inputText id="locationCode" value="#{locationController.newLocation.coords}" />
+                    <h:outputLabel for="tripAccomodation" value="Accomodatie:" />
+                    <p:selectOneMenu id="tripAccomodation" value="#{tripController.newTrip.accomodation}">
+                        <f:selectItems value="#{accomodationController.allAccomodations}" var="accomodation" itemLabel="#{accomodation.name}" itemValue="#{accomodation}"/>
+                    </p:selectOneMenu>
                 </p:column>
                 <p:column>
-                    <h:outputLabel for="locationURL" value="Foto URL:" />
-                    <p:inputText id="locationURL" value="#{locationController.newLocation.photourl}" />
+                    <h:outputLabel for="tripTransport" value="Transport" />
+                    <p:selectOneMenu id="tripTransport" value="#{tripController.newTrip.transport}">
+                        <f:selectItems var="transport" value="#{transportController.transports}" itemLabel="#{transport.name}" itemValue="#{transport}"/>
+                    </p:selectOneMenu>
                 </p:column>
                 <p:column>
-                    <p:commandButton value="Toevoegen" action="#{locationController.submit}" update=":locationDataTable" />
+                    <p:commandButton value="Toevoegen" action="#{tripController.submit}" update=":tripDataTable" />
                 </p:column>
-            </h:panelGrid>
+            </p:panelGrid>
         </p:panel>
-
-
     </h:form>
 </h:body>
 </html>

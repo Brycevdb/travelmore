@@ -36,4 +36,8 @@ public class LocationRepository {
     public void insert(Location location) {
         entityManager.persist(location);
     }
+
+    public void delete(Location location) {
+        entityManager.remove(location);
+    }
 }

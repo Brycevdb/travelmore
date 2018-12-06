@@ -108,6 +108,7 @@ DROP TABLE IF EXISTS `trip`;
 CREATE TABLE `trip` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `departure` int(11) DEFAULT NULL,
+  `arrival` int(11) default null,
   `accomodationId` int(11) DEFAULT NULL,
   `transportId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -214,5 +215,5 @@ INSERT INTO `travelmore`.`tripofuser` (`userId`, `tripId`, `totalprice`, `totalp
 INSERT INTO `travelmore`.`transport` (`name`, `priceaperson`) VALUES ('auto', '10');
 INSERT INTO `travelmore`.`transport` (`name`, `priceaperson`) VALUES ('vliegtuig', '200');
 
-INSERT INTO `travelmore`.`trip` (`departure`, `accomodationId`, `transportId`) VALUES ('1', '2', '1');
-INSERT INTO `travelmore`.`trip` (`departure`, `accomodationId`, `transportId`) VALUES ('2', '1', '2');
+INSERT INTO `travelmore`.`trip` (`departure`,`arrival`, `accomodationId`, `transportId`) VALUES ('1','5', '2', '1');
+INSERT INTO `travelmore`.`trip` (`departure`,`arrival`, `accomodationId`, `transportId`) VALUES ('2','3', '1', '2');

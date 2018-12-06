@@ -144,7 +144,7 @@ public class LocationController {
         this.search = selected.getName();
     }
 
-    public Object getAll() {
+    public List<Location> getAll() {
         return this.locationService.findAllLocations();
     }
 
@@ -155,5 +155,9 @@ public class LocationController {
         }else{
             return this.selected.getName();
         }
+    }
+
+    public void delete(Location location) {
+        locationService.delete(location);
     }
 }

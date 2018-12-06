@@ -46,6 +46,7 @@ public class TripController {
     }
 
     public void submit() {
+        System.out.println("Ik kom hier");
         this.tripService.insert(newTrip);
     }
 
@@ -55,5 +56,13 @@ public class TripController {
         }
         selected = trip;
         return "booking";
+    }
+
+    public List<Trip> getAll() {
+        return tripService.findAllTrips();
+    }
+
+    public void delete(Trip trip) {
+        tripService.delete(trip);
     }
 }

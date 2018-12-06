@@ -36,6 +36,10 @@ public class Trip {
     @JoinColumn(name = "departure")
     private Location locationt;
 
+    @ManyToOne
+    @JoinColumn(name = "arrival")
+    private Location arrival;
+
     @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER)
     private List<TripOfUser> tripOfUsers;
 
@@ -77,5 +81,13 @@ public class Trip {
 
     public void setTripOfUsers(List<TripOfUser> tripOfUsers) {
         this.tripOfUsers = tripOfUsers;
+    }
+
+    public Location getArrival() {
+        return arrival;
+    }
+
+    public void setArrival(Location arrival) {
+        this.arrival = arrival;
     }
 }

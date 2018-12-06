@@ -36,4 +36,8 @@ public class LocationService {
     public void insert(Location location) {
         locationRepository.insert(location);
     }
+
+    public void delete(Location location) {
+        locationRepository.delete(locationRepository.findById(location.getId()));
+    }
 }
