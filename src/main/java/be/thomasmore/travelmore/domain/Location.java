@@ -31,6 +31,8 @@ public class Location {
     private String name;
     @Column(name = "coords")
     private String coords;
+    @Column(name = "photourl")
+    private String photourl;
 
     @OneToMany(mappedBy = "location")
     private List<Accomodation> accomodations;
@@ -76,5 +78,13 @@ public class Location {
 
     public void setTrips(List<Trip> trips) {
         this.trips = trips;
+    }
+
+    public String getPhotourl() {
+        return photourl;
+    }
+
+    public void setPhotourl(String photourl) {
+        this.photourl = photourl;
     }
 }

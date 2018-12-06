@@ -34,6 +34,8 @@ public class Accomodation {
     private int freePlaces;
     @Column(name = "priceAPerson")
     private double priceAPerson;
+    @Column(name = "photourl")
+    private String photourl;
 
     @ManyToOne
     @JoinColumn(name = "location_id")
@@ -100,5 +102,13 @@ public class Accomodation {
 
     public void setPeriod(Period period) {
         this.period = period;
+    }
+
+    public String getPhotourl() {
+        return photourl;
+    }
+
+    public void setPhotourl(String photourl) {
+        this.photourl = photourl;
     }
 }
