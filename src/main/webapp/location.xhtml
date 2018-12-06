@@ -39,7 +39,7 @@
     <div class="container">
         <p>Selecteer de gewenste reis voor deze bestemming: </p>
         <h:form>
-            <p:dataTable styleClass="test" var="trip" value="#{locationController.selected.trips}" filteredValue="#{locationController.filteredSelected}" id="locationDataTable" widgetVar="tripTabel"
+            <p:dataTable var="trip" value="#{locationController.selected.trips}" filteredValue="#{locationController.filteredSelected}" id="locationDataTable" widgetVar="tripTabel"
             emptyMessage="Geen reizen gevonden die aan de criteria voldoen.">
                 <p:column headerText="Accommodatie">
                     <p:commandButton value="#{trip.accomodation.name}" action="#{accomodationController.showAccomodation(trip.accomodation)}" />

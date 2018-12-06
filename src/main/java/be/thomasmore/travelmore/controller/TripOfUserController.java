@@ -64,7 +64,7 @@ public class TripOfUserController implements Serializable{
         this.paymentMethods = paymentMethods;
     }
 
-    public List<TripOfUser> getTripsByUserId (User user) {
+    public List<TripOfUser> getTripsByUser (User user) {
         if(user != null){
             return this.tripOfUserService.findByUserId(user);
         }

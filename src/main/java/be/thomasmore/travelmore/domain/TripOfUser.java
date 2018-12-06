@@ -9,7 +9,7 @@ import java.util.Date;
         {
                 @NamedQuery(
                         name = TripOfUser.FIND_BYUSERID,
-                        query = "SELECT t FROM TripOfUser t WHERE t.user >= :user"
+                        query = "SELECT t FROM TripOfUser t WHERE t.user = :user"
                 ),
                 @NamedQuery(
                         name = TripOfUser.FIND_ALL,
