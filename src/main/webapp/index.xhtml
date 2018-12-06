@@ -53,16 +53,10 @@
                     Zie de wereld, het leven is te kort om niet te weten wat de wereld met zich meebrengt. Zoek naar bestemmingen gans de aardbol rond.
                 </p>
 
-                <h:form styleClass="widthFull column">
-                    <p:autoComplete styleClass="widthFull margedSmall noMargin_left noMargin_right noMargin_bottom" value="#{locationController.selected}" var="Location" itemValue="#{Location}" itemLabel="#{Location.name}" converter="#{locationConverter}" completeMethod="#{locationController.complete}">
-                        <p:ajax event="itemSelect" update="locationDataGrid" />
-                        <p:ajax event="keydown" update="locationDataGrid" />
+                <h:form id="frmSearch" styleClass="widthFull column">
+                    <p:autoComplete id="complete" styleClass="widthFull margedSmall noMargin_left noMargin_right noMargin_bottom" value="#{locationController.selected}" var="Location" itemValue="#{Location}" itemLabel="#{Location.name}" converter="#{locationConverter}" completeMethod="#{locationController.autoComplete}">
+                        <p:ajax event="itemSelect" listener="#{locationController.setSelect()}" update=":frmTrips:locationDataTable" />
                     </p:autoComplete>
-
-                    <div class="row noMargin_left noMargin_right margedExtraSmall noMargin_bottom">
-                        <h:commandButton value="Zoeken" update=":locationDataGrid" />
-                        <h:commandButton styleClass="margedExtraSmall noMargin_right noMargin_top noMargin_bottom" value="Reset de selectie" action="#{locationController.resetFields()}" update=":locationDataGrid" />
-                    </div>
                 </h:form>
             </div>
         </div>
@@ -71,12 +65,77 @@
     <div class="widthFull column centered margedNormal noMargin_left noMargin_right noMargin_bottom lightbacked">
         <div class="widthMaxed column">
             <div class="paddedBig column">
-                <p:dataGrid var="location" value="#{locationController.locations}" id="locationDataGrid" columns="1" rows="10">
+                <h:form id="frmTrips">
+                <p:dataTable id="locationDataTable" var="trip" value="#{locationController.selected.trips}" filteredValue="#{locationController.filteredSelected}" widgetVar="tripTabel"
+                             emptyMessage="Geen reizen gevonden voor #{locationController.selectedName}">
+                    <p:column headerText="Accommodatie">
+                        <p:commandButton value="#{trip.accomodation.name}" action="#{accomodationController.showAccomodation(trip.accomodation)}" />
+                    </p:column>
+                    <p:column headerText="Reis locatie" filterBy="#{trip.accomodation.location.name}" filterMatchMode="contains">
+                        <h:outputText value="#{trip.accomodation.location.name}"/>
+                    </p:column>
+                    <p:column headerText="Vertrek" filterBy="#{trip.locationt.name}" filterMatchMode="contains">
+                        <h:outputText value="#{trip.locationt.name}"/>
+                    </p:column>
+                    <p:column headerText="Start" filterBy="#{trip.accomodation.period.start}" filterFunction="#{locationController.filterByDate}">
+                        <f:facet name="filter">
+                            <p:calendar id="cal1" pattern="yyyy-MM-dd">
+                                <p:ajax event="dateSelect" oncomplete="PF('tripTabel').filter()" update="locationDataTable" />
+                                <p:ajax event="change" execute="@this" oncomplete="PF('tripTabel').filter()" update="locationDataTable"/>
+                            </p:calendar>
+                        </f:facet>
+                        <h:outputText value="#{trip.accomodation.period.start}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Einde" filterBy="#{trip.accomodation.period.end}" filterFunction="#{locationController.filterByDate}">
+                        <f:facet name="filter">
+                            <p:calendar id="cal2" pattern="yyyy-MM-dd">
+                                <p:ajax event="dateSelect" oncomplete="PF('tripTabel').filter()" update="locationDataTable" />
+                                <p:ajax event="change" execute="@this" oncomplete="PF('tripTabel').filter()" update="locationDataTable"/>
+                            </p:calendar>
+                        </f:facet>
+                        <h:outputText value="#{trip.accomodation.period.end}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Beschikbare plaatsen" filterBy="#{trip.accomodation.freePlaces}" filterFunction="#{locationController.filterByFreeplaces}">
+                        <p>#{trip.accomodation.freePlaces}</p>
+                    </p:column>
+                    <p:column headerText="Prijs per persoon" filterBy="#{trip.accomodation.priceAPerson}" filterFunction="#{locationController.filterByPrice}">
+                        <p> €#{trip.accomodation.priceAPerson}</p>
+                    </p:column>
+                    <p:column headerText="Transport" filterBy="#{trip.transport.name}" filterMatchMode="contains">
+                        <h:outputText value="#{trip.transport.name}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Boeken" action="#{tripController.goToBooking(trip, userController.currentUser)}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            </div>
+        </div>
+    </div>
+
+    <div class="widthFull column centered margedNormal noMargin_left noMargin_right noMargin_bottom lightbacked">
+        <div class="widthMaxed column">
+            <div class="paddedBig column">
+                <h2 class="paddedExtraSmall noPadding_left noPadding_right noPadding_top">
+                    Moeite met kiezen?
+                </h2>
+
+                <p class="readable widthHalf">
+                    We snappen helemaal wat u bedoeld, net daarom willen we u graag een stapje verder zetten met deze suggesties.
+                </p>
+
+                <p:dataGrid styleClass="margedSmall noMargin_left noMargin_right noMargin_bottom" var="location" value="#{locationController.all}" id="locationDataGrid" columns="5" rows="10">
                     <p:column>
                         <p:panel header="#{location.name}">
                             <h:panelGrid columns="1">
-                                <img src="#{location.photourl}" height="150" alt="Commerciele foto van #{location.name}"/>
-                                <p:commandButton value="Bekijk" action="#{locationController.showTrips(location)}" />
+                                <div class="paddedExtraBig noPadding_left noPadding_right locationImage" style='background-image: url("#{location.photourl}")'></div>
+                                <h:form>
+                                    <h:commandButton styleClass="locationbutton" value="Bekijk accomodaties hier" action="#{locationController.showTrips(location)}" update=":frmSearch:complete :frmTrips:locationDataTable" />
+                                </h:form>
                             </h:panelGrid>
                         </p:panel>
                     </p:column>

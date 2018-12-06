@@ -5,6 +5,7 @@ import be.thomasmore.travelmore.domain.Trip;
 import be.thomasmore.travelmore.service.LocationService;
 
 
+import javax.el.MethodExpression;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
@@ -33,10 +34,6 @@ public class LocationController {
         this.locations = this.locationService.findAllLocations();
     }
 
-    public void resetFields(){
-        this.search = "";
-    }
-
     public void setNewLocation(Location newLocation) {
         this.newLocation = newLocation;
     }
@@ -45,6 +42,7 @@ public class LocationController {
         if(this.selected == null){
             selected = new Location();
         }
+
         return selected;
     }
 
@@ -71,18 +69,16 @@ public class LocationController {
     }
 
     public List<Location> autoComplete(String search) {
-        List<Location> filteredLocations = new ArrayList<Location>();
-        for (Location location : this.locations) {
-            if (location.getName().toLowerCase().contains(search)) {
-                filteredLocations.add(location);
-            }
-        }
-        return filteredLocations;
+        this.search = search;
+
+        return this.locationService.getAllByName(search);
     }
 
-    public String showTrips(Location location) {
-        selected = location;
-        return "location";
+    public void showTrips(Location location) {
+        this.search = location.getName();
+        this.selected = location;
+
+        System.out.println(this.search + this.selected.getName());
     }
 
     public void submit(){
@@ -93,18 +89,6 @@ public class LocationController {
         this.newLocation = location;
 
         return "index_location";
-    }
-
-    public String goTo(Location location) {
-        return "index";
-    }
-
-    public List<Location> complete(String search) {
-        this.search = search;
-
-        System.out.println("SEARCH: " + this.search);
-
-        return this.locationService.getAllByName(this.search);
     }
 
     public boolean filterByFreeplaces(Object value, Object filter, Locale locale) {
@@ -154,5 +138,22 @@ public class LocationController {
         } catch (ParseException e) {return false;}
 
         return valueDate.after(filterDate);
+    }
+
+    public void setSelect() {
+        this.search = selected.getName();
+    }
+
+    public Object getAll() {
+        return this.locationService.findAllLocations();
+    }
+
+    public String getSelectedName() {
+        System.out.println("'" + this.getSelected().getName() + "'");
+        if(this.getSelected().getName() == null){
+            return " .. misschien toch eerst een bestemming kiezen?";
+        }else{
+            return this.selected.getName();
+        }
     }
 }

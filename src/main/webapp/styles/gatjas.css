@@ -12,6 +12,20 @@ span.widthFull > *{
     width: 100%;
 }
 
+.ui-datagrid-column,
+.ui-panel
+.ui-panel-content{
+    padding: 0;
+}
+
+.ui-autocomplete-panel.ui-widget-content{
+    background-color: #FFFFFF;
+}
+
+.ui-autocomplete-items.ui-autocomplete-list > li.ui-state-highlight{
+    background-color: aqua;
+}
+
 .ui-widget-content {
     border: 0;
     background: transparent;
@@ -19,4 +33,16 @@ span.widthFull > *{
 
 .lightbacked{
     background-color: #FFFFFF;
+}
+
+.locationImage{
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.locationbutton,
+table{
+    width: 100%;
 }
