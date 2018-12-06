@@ -170,8 +170,8 @@ UNLOCK TABLES;
 -- Table structure for table `userpaymentmethod`
 --
 
-INSERT INTO `travelmore`.`location` (`name`, `coords`, `photourl`) VALUES ('Brussel', '0.0', 'https://cdn.pixabay.com/photo/2015/09/25/23/10/brussel-958408_960_720.jpg');
-INSERT INTO `travelmore`.`location` (`name`, `coords`, `photourl`) VALUES ('Antwerpen', '1.1', 'https://cdn.pixabay.com/photo/2016/02/05/15/20/antwerp-1181141_960_720.jpg');
+INSERT INTO `travelmore`.`location` (`name`, `coords`, `photourl`) VALUES ('Brussel', '0.0', 'https://www.dinnerinthesky.be/dist/assets/images/slider/pic_001.jpg');
+INSERT INTO `travelmore`.`location` (`name`, `coords`, `photourl`) VALUES ('Antwerpen', '1.1', 'https://static.b-europe.com/-/media/MediaRepository/Images_LowRes/Destinations/BE/700x432_antwerp_2.ashx?h=432&la=en&w=700&hash=2A71B7E1DCCDE00F425029D959C9A8894C155996');
 
 INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`, `photourl`) VALUES ('Hotel', '1', '1', '50', '50', 'https://images.freeimages.com/images/large-previews/12a/hotel-1220563.jpg');
 INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`, `photourl`) VALUES ('Camping Kitsch', '2', '2', '200', '15', 'https://cdn.pixabay.com/photo/2016/11/29/04/17/bonfire-1867275_960_720.jpg');
