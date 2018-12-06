@@ -12,7 +12,7 @@ CREATE TABLE `accomodation` (
   `periodId` int(11) DEFAULT NULL,
   `freeplaces` int(11) DEFAULT NULL,
   `priceaperson` double DEFAULT NULL,
-  `photourl` varchar(45) default null,
+  `photourl` varchar(200) default null,
   PRIMARY KEY (`id`)
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE `location` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `coords` varchar(45) DEFAULT NULL,
-  `photourl` varchar(45) default null,
+  `photourl` varchar(200) default null,
   PRIMARY KEY (`id`)
 );
 
