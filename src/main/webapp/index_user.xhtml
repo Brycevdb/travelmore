@@ -59,7 +59,7 @@
 
     </h:form>
         </div>
-        <div style="width:400px; float:right; margin:5px;">
+        <div style="width:400px; height:300px; float:right; margin:5px;">
             <p>A new user to our site? Fill in the form below to register for a user-account.</p>
     <h:form>
 
@@ -83,6 +83,23 @@
     </h:form>
         </div>
     </div>
+    <ui:include src="footer.xhtml"/>
+    <style>
+        .heightFull {height:100%;}
 
+        .footer {
+            height: 60px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #011a27;
+            color: white;
+            text-align: center;
+
+        }
+        .footer p {
+            padding-top: 20px;
+        }
+    </style>
 </h:body>
 </html>
