@@ -197,7 +197,9 @@ INSERT INTO `travelmore`.`location` (`name`, `coords`, `photourl`) VALUES ('Popp
 INSERT INTO `travelmore`.`location` (`name`, `coords`, `photourl`) VALUES ('Tilburg', '0.0', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSm5JPZtZPtw-c3ErnzIySLNJcYo4u3d7cIBP0LKlQOYdkAXNv');
 
 INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`, `photourl`) VALUES ('Hotel', '1', '1', '50', '50', 'https://images.freeimages.com/images/large-previews/12a/hotel-1220563.jpg');
-INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`, `photourl`) VALUES ('Camping Kitsch', '2', '2', '200', '15', 'https://cdn.pixabay.com/photo/2016/11/29/04/17/bonfire-1867275_960_720.jpg');
+INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`, `photourl`) VALUES ('Camping', '2', '2', '200', '15', 'https://cdn.pixabay.com/photo/2016/11/29/04/17/bonfire-1867275_960_720.jpg');
+INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`, `photourl`) VALUES ('BnB', '5', '2', '150', '50', 'https://cdn.pixabay.com/photo/2016/11/29/04/17/bonfire-1867275_960_720.jpg');
+INSERT INTO `travelmore`.`accomodation` (`name`, `location_id`, `periodId`, `freeplaces`, `priceaperson`, `photourl`) VALUES ('Bungalow', '3', '2', '10', '500', 'https://cdn.pixabay.com/photo/2016/11/29/04/17/bonfire-1867275_960_720.jpg');
 
 INSERT INTO `travelmore`.`user` (`name`, `famname`, `role`, `pass`, `mail`, `landId`) VALUES ('User', 'user', '1', 'iets', 'iets', '1');
 INSERT INTO `travelmore`.`user` (`name`, `famname`, `role`, `pass`, `mail`, `landId`) VALUES ('User2', 'user', '0', 'iets2', 'iets2', '2');
@@ -215,5 +217,7 @@ INSERT INTO `travelmore`.`tripofuser` (`userId`, `tripId`, `totalprice`, `totalp
 INSERT INTO `travelmore`.`transport` (`name`, `priceaperson`) VALUES ('auto', '10');
 INSERT INTO `travelmore`.`transport` (`name`, `priceaperson`) VALUES ('vliegtuig', '200');
 
-INSERT INTO `travelmore`.`trip` (`departure`,`arrival`, `accomodationId`, `transportId`) VALUES ('1','5', '2', '1');
-INSERT INTO `travelmore`.`trip` (`departure`,`arrival`, `accomodationId`, `transportId`) VALUES ('2','3', '1', '2');
+INSERT INTO `travelmore`.`trip` (`departure`,`arrival`, `accomodationId`, `transportId`) VALUES ('1','2', '2', '1');
+INSERT INTO `travelmore`.`trip` (`departure`,`arrival`, `accomodationId`, `transportId`) VALUES ('2','1', '1', '2');
+INSERT INTO `travelmore`.`trip` (`departure`,`arrival`, `accomodationId`, `transportId`) VALUES ('2','5', '3', '1');
+INSERT INTO `travelmore`.`trip` (`departure`,`arrival`, `accomodationId`, `transportId`) VALUES ('1','3', '4', '2');

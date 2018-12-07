@@ -1,7 +1,6 @@
 package be.thomasmore.travelmore.controller;
 
-import be.thomasmore.travelmore.domain.Trip;
-import be.thomasmore.travelmore.domain.User;
+import be.thomasmore.travelmore.domain.*;
 import be.thomasmore.travelmore.service.TripService;
 
 import javax.faces.bean.ManagedBean;
@@ -17,6 +16,10 @@ import java.util.Locale;
 public class TripController {
     private Trip newTrip = new Trip();
     private Trip selected;
+
+    private Location location;
+    private Accomodation accomodation;
+    private Transport transport;
 
     @Inject
     private TripService tripService;
@@ -47,6 +50,7 @@ public class TripController {
 
     public void submit() {
         System.out.println("Ik kom hier");
+        newTrip.setArrival(newTrip.getAccomodation().getLocation());
         this.tripService.insert(newTrip);
     }
 
@@ -64,5 +68,29 @@ public class TripController {
 
     public void delete(Trip trip) {
         tripService.delete(trip);
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Accomodation getAccomodation() {
+        return accomodation;
+    }
+
+    public void setAccomodation(Accomodation accomodation) {
+        this.accomodation = accomodation;
+    }
+
+    public Transport getTransport() {
+        return transport;
+    }
+
+    public void setTransport(Transport transport) {
+        this.transport = transport;
     }
 }

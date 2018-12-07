@@ -58,20 +58,20 @@
         <p:panel id="panel" header="Form" style="margin-bottom:10px;">
             <p:panelGrid columns="4" cellpadding="5">
                 <p:column>
-                    <h:outputLabel for="tripLocation" value="Vertrek:" />
-                    <p:selectOneMenu id="tripLocation" value="#{tripController.newTrip.locationt}">
+                    <p:outputLabel for="tripLocation" value="Vertrek:" />
+                    <p:selectOneMenu id="tripLocation" value="#{tripController.newTrip.locationt}" converter="#{locationConverter}">
                         <f:selectItems value="#{locationController.getAll()}" var="location" itemLabel="#{location.name}" itemValue="#{location}"/>
                     </p:selectOneMenu>
                 </p:column>
                 <p:column>
-                    <h:outputLabel for="tripAccomodation" value="Accomodatie:" />
-                    <p:selectOneMenu id="tripAccomodation" value="#{tripController.newTrip.accomodation}">
+                    <p:outputLabel for="tripAccomodation" value="Accomodatie:" />
+                    <p:selectOneMenu id="tripAccomodation" value="#{tripController.newTrip.accomodation}" converter="#{accomodationConverter}">
                         <f:selectItems value="#{accomodationController.allAccomodations}" var="accomodation" itemLabel="#{accomodation.name}" itemValue="#{accomodation}"/>
                     </p:selectOneMenu>
                 </p:column>
                 <p:column>
-                    <h:outputLabel for="tripTransport" value="Transport" />
-                    <p:selectOneMenu id="tripTransport" value="#{tripController.newTrip.transport}">
+                    <p:outputLabel for="tripTransport" value="Transport" />
+                    <p:selectOneMenu id="tripTransport" value="#{tripController.newTrip.transport}" converter="#{transportConverter}">
                         <f:selectItems var="transport" value="#{transportController.transports}" itemLabel="#{transport.name}" itemValue="#{transport}"/>
                     </p:selectOneMenu>
                 </p:column>
